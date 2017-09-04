@@ -11,9 +11,14 @@ import SnapKit
 import KDCircularProgress
 
 class HomeViewController: UIViewController {
- 
+  
   var imageAngle: CGFloat = 0.0
-  var gestureRecognizer: OneFingerRotationGestureRecognizer!
+  var gestureRecognizer: UIGestureRecognizer!
+  
+  var midPoint = CGPoint.zero
+  var innerRadius: CGFloat = 0.0
+  var outerRadius: CGFloat = 0.0
+  var cumulatedAngle: CGFloat = 0.0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,8 +26,6 @@ class HomeViewController: UIViewController {
     setupViewHierarchy()
     configureConstraints()
     configureGestureRecognizer()
-    
-    HDTimeLabel.text = ("\(gestureRecognizer.cumulatedAngle)")
   }
   
   //MARK: - Setup
@@ -79,25 +82,25 @@ class HomeViewController: UIViewController {
     // outRadius / 3 is arbitrary, just choose something >> 0 to avoid strange
     // effects when touching the control near of it's center
     
-    gestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: midPoint, innerRadius: outRadius / 3, outerRadius: outRadius, target: self)
+    //    gestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: midPoint, innerRadius: outRadius / 3, outerRadius: outRadius, target: self)
     redView.addGestureRecognizer(gestureRecognizer)
   }
   
   //MARK: - Actions
-
+  
   func sliderDidChangeValue(_ sender: UISlider) {
     circularProgress.angle = Double(sender.value) * 100
   }
   
   func animateButtonTapped(_ sender: UIButton) {
-    print("\(Double(gestureRecognizer.cumulatedAngle))")
-    circularProgress.animate(fromAngle: Double(gestureRecognizer.cumulatedAngle), toAngle: Double(imageAngle), duration: 60) { completed in
-      if completed {
-        print("animation stopped, completed")
-      } else {
-        print("animation stopped, was interrupted")
-      }
-    }
+    //    print("\(Double(gestureRecognizer.cumulatedAngle))")
+    //    circularProgress.animate(fromAngle: Double(gestureRecognizer.cumulatedAngle), toAngle: Double(imageAngle), duration: 60) { completed in
+    //      if completed {
+    //        print("animation stopped, completed")
+    //      } else {
+    //        print("animation stopped, was interrupted")
+    //      }
+    //    }
   }
   
   //MARK: - Lazy Vars
@@ -152,4 +155,75 @@ class HomeViewController: UIViewController {
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
+}
+
+// MARK: - UIGestureRecognizer implementation
+
+extension HomeViewController: UIGestureRecognizerDelegate {
+  
+  func distanceBetweenPoints(point1: CGPoint, point2: CGPoint) -> CGFloat {
+    let dx: CGFloat = point1.x - point2.x
+    let dy: CGFloat = point1.y - point2.y
+    return sqrt(dx * dx + dy * dy)
+  }
+  
+  func angleBetweenLinesInDegrees(beginLineA: CGPoint, endLineA: CGPoint, beginLineB: CGPoint, endLineB: CGPoint) -> CGFloat {
+    let a: CGFloat = endLineA.x - beginLineA.x
+    let b: CGFloat = endLineA.y - beginLineA.y
+    let c: CGFloat = endLineB.x - beginLineB.x
+    let d: CGFloat = endLineB.y - beginLineB.y
+    let atanA: CGFloat = atan2(a, b)
+    let atanB: CGFloat = atan2(c, d)
+    // convert radiants to degrees
+    return (atanA - atanB) * 180 / .pi
+  }
+  
+  
+  func reset() {
+    cumulatedAngle = 0
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if touches.count != 1 {
+      gestureRecognizer.state = UIGestureRecognizerState.failed
+      return
+    }
+  }
+  
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if gestureRecognizer.state == .failed {
+      return
+    }
+    let nowPoint: CGPoint? = touches.first?.location(in: view)
+    let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
+    // make sure the new point is within the area
+    let distance: CGFloat = distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
+    
+    //    if innerRadius <= distance && distance <= outerRadius {
+    // calculate rotation angle between two points
+    var angle: CGFloat = angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
+    // fix value, if the 12 o'clock position is between prevPoint and nowPoint
+    if angle > 180 {
+      angle -= 360
+    }
+    else if angle < -180 {
+      angle += 360
+    }
+    
+    // sum up single steps
+    cumulatedAngle += angle
+    print("CUMULATED ANGLE \(cumulatedAngle)")
+    // call delegate
+    //      if (target?.responds(to: #selector(rotation)))! {
+    
+    //    target?.rotation(angle)
+    //      }
+    //    }
+    //    else {
+    //      // finger moved outside the area
+    //      state = UIGestureRecognizerState.failed
+    //    }
+  }
+  
+  
 }
