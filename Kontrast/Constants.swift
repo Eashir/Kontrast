@@ -28,4 +28,8 @@ struct Layout {
   static var screenWidth = UIScreen.main.bounds.width
   static var screenHeight = UIScreen.main.bounds.height
   
+  static var standardOffset = 8
+  static var mediumOffset = 24
+  static var largeOffset = 48
+  
 }

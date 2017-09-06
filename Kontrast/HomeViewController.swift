@@ -13,7 +13,7 @@ import KDCircularProgress
 class HomeViewController: UIViewController {
   
   var imageAngle: CGFloat = 0.0
-  var gestureRecognizer: UIGestureRecognizer!
+  var gestureRecognizer = UIGestureRecognizer()
   
   var midPoint = CGPoint.zero
   var innerRadius: CGFloat = 0.0
@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
     view.addSubview(circularProgress)
     view.addSubview(animateButton)
     view.addSubview(progressSlider)
-    view.addSubview(redView)
+    view.addSubview(dialImageView)
     view.addSubview(HDTimeLabel)
   }
   
@@ -59,11 +59,11 @@ class HomeViewController: UIViewController {
       make.width.equalTo(circularProgress.snp.width)
     }
     
-    redView.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.bottom.equalTo(progressSlider.snp.bottom).offset(-24)
-      make.width.equalTo(150)
-      make.height.equalTo(150)
+    dialImageView.snp.makeConstraints { (make) in
+      make.top.equalTo(circularProgress.snp.top)
+      make.bottom.equalTo(circularProgress.snp.bottom)
+      make.leading.equalTo(circularProgress.snp.leading)
+      make.trailing.equalTo(circularProgress.snp.trailing)
     }
     
     HDTimeLabel.snp.makeConstraints { (make) in
@@ -83,7 +83,8 @@ class HomeViewController: UIViewController {
     // effects when touching the control near of it's center
     
     //    gestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: midPoint, innerRadius: outRadius / 3, outerRadius: outRadius, target: self)
-    redView.addGestureRecognizer(gestureRecognizer)
+    
+    circularProgress.addGestureRecognizer(gestureRecognizer)
   }
   
   //MARK: - Actions
@@ -94,13 +95,15 @@ class HomeViewController: UIViewController {
   
   func animateButtonTapped(_ sender: UIButton) {
     //    print("\(Double(gestureRecognizer.cumulatedAngle))")
-    //    circularProgress.animate(fromAngle: Double(gestureRecognizer.cumulatedAngle), toAngle: Double(imageAngle), duration: 60) { completed in
-    //      if completed {
-    //        print("animation stopped, completed")
-    //      } else {
-    //        print("animation stopped, was interrupted")
-    //      }
-    //    }
+    
+    dialImageView.removeFromSuperview()
+        circularProgress.animate(fromAngle: Double(cumulatedAngle/2), toAngle: Double(imageAngle), duration:  Double(cumulatedAngle/6)) { completed in
+          if completed {
+            print("animation stopped, completed")
+          } else {
+            print("animation stopped, was interrupted")
+          }
+        }
   }
   
   //MARK: - Lazy Vars
@@ -149,11 +152,13 @@ class HomeViewController: UIViewController {
     return button
   }()
   
-  lazy var redView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .red
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
+  lazy var dialImageView: UIImageView = {
+    let imageView = UIImageView()
+    let image = UIImage(named: "dial")
+    imageView.image = image
+    imageView.contentMode = .scaleAspectFit
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
   }()
 }
 
@@ -194,6 +199,10 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     if gestureRecognizer.state == .failed {
       return
     }
+    // calculate center and radius of the control
+    let midPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
+    let outRadius = circularProgress.frame.size.width / 2
+    
     let nowPoint: CGPoint? = touches.first?.location(in: view)
     let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
     // make sure the new point is within the area
@@ -212,7 +221,13 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     
     // sum up single steps
     cumulatedAngle += angle
+    
+    HDTimeLabel.text = ("\(Int(cumulatedAngle/6))")
     print("CUMULATED ANGLE \(cumulatedAngle)")
+    
+    if Int(cumulatedAngle) != (Int(cumulatedAngle) + Int(angle)) {
+     dialImageView.transform = dialImageView.transform.rotated(by: CGFloat(cumulatedAngle))
+    }
     // call delegate
     //      if (target?.responds(to: #selector(rotation)))! {
     
