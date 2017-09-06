@@ -21,8 +21,6 @@ class HomeViewController: UIViewController {
     setupViewHierarchy()
     configureConstraints()
     configureGestureRecognizer()
-    
-    HDTimeLabel.text = ("\(gestureRecognizer.cumulatedAngle)")
   }
   
   //MARK: - Setup
