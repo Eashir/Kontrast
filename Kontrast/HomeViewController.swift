@@ -77,7 +77,7 @@ class HomeViewController: UIViewController {
     // outRadius / 3 is arbitrary, just choose something >> 0 to avoid strange
     // effects when touching the control near of it's center
     
-    gestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: midPoint, innerRadius: outRadius / 3, outerRadius: outRadius, target: self)
+    gestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: midPoint, innerRadius: outRadius / 3, outerRadius: outRadius)
     circularProgress.addGestureRecognizer(gestureRecognizer)
   }
   
@@ -89,7 +89,9 @@ class HomeViewController: UIViewController {
   
   func animateButtonTapped(_ sender: UIButton) {
     print("\(Double(gestureRecognizer.cumulatedAngle))")
-    circularProgress.animate(fromAngle: Double(gestureRecognizer.cumulatedAngle), toAngle: Double(imageAngle), duration: 60) { completed in
+    
+    dialImageView.removeFromSuperview()
+    circularProgress.animate(fromAngle: Double(gestureRecognizer.cumulatedAngle/2), toAngle: Double(imageAngle), duration:  Double(gestureRecognizer.cumulatedAngle/6)) { completed in
       if completed {
         print("animation stopped, completed")
       } else {
@@ -97,7 +99,6 @@ class HomeViewController: UIViewController {
       }
     }
   }
-  
   //MARK: - Lazy Vars
   
   lazy var HDTimeLabel: UILabel = {

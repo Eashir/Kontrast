@@ -25,8 +25,8 @@ class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
   var cumulatedAngle: CGFloat = 0.0
 //  weak var target: OneFingerRotationGestureRecognizerDelegate?
   
-  init(midPoint: CGPoint, innerRadius: CGFloat, outerRadius: CGFloat, target: Any) {
-    super.init(target: target, action: nil)
+  init(midPoint: CGPoint, innerRadius: CGFloat, outerRadius: CGFloat) {
+    super.init(target: nil, action: nil)
   }
   
   func distanceBetweenPoints(point1: CGPoint, point2: CGPoint) -> CGFloat {
@@ -69,14 +69,18 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     if gestureRecognizer.state == .failed {
       return
     }
+    
+    let midPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
+    let outRadius = circularProgress.frame.size.width / 2
+    
     let nowPoint: CGPoint? = touches.first?.location(in: view)
     let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
     // make sure the new point is within the area
-    let distance: CGFloat = gestureRecognizer.distanceBetweenPoints(point1: gestureRecognizer.midPoint, point2: nowPoint!)
+    let distance: CGFloat = gestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
     
     //    if innerRadius <= distance && distance <= outerRadius {
     // calculate rotation angle between two points
-    var angle: CGFloat = gestureRecognizer.angleBetweenLinesInDegrees(beginLineA: gestureRecognizer.midPoint, endLineA: prevPoint!, beginLineB: gestureRecognizer.midPoint, endLineB: nowPoint!)
+    var angle: CGFloat = gestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
     // fix value, if the 12 o'clock position is between prevPoint and nowPoint
     if angle > 180 {
       angle -= 360
