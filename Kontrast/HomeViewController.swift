@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     view.addSubview(circularProgress)
     view.addSubview(animateButton)
     view.addSubview(progressSlider)
-    view.addSubview(redView)
+    view.addSubview(dialImageView)
     view.addSubview(HDTimeLabel)
   }
   
@@ -54,11 +54,11 @@ class HomeViewController: UIViewController {
       make.width.equalTo(circularProgress.snp.width)
     }
     
-    redView.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.bottom.equalTo(progressSlider.snp.bottom).offset(-24)
-      make.width.equalTo(150)
-      make.height.equalTo(150)
+    dialImageView.snp.makeConstraints { (make) in
+      make.top.equalTo(circularProgress.snp.top)
+      make.bottom.equalTo(circularProgress.snp.bottom)
+      make.leading.equalTo(circularProgress.snp.leading)
+      make.trailing.equalTo(circularProgress.snp.trailing)
     }
     
     HDTimeLabel.snp.makeConstraints { (make) in
@@ -78,7 +78,7 @@ class HomeViewController: UIViewController {
     // effects when touching the control near of it's center
     
     gestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: midPoint, innerRadius: outRadius / 3, outerRadius: outRadius, target: self)
-    redView.addGestureRecognizer(gestureRecognizer)
+    circularProgress.addGestureRecognizer(gestureRecognizer)
   }
   
   //MARK: - Actions
@@ -144,10 +144,12 @@ class HomeViewController: UIViewController {
     return button
   }()
   
-  lazy var redView: UIView = {
-    let view = UIView()
-    view.backgroundColor = .red
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
+  lazy var dialImageView: UIImageView = {
+    let imageView = UIImageView()
+    let image = UIImage(named: "dial")
+    imageView.image = image
+    imageView.contentMode = .scaleAspectFit
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
   }()
 }

@@ -87,8 +87,14 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     
     // sum up single steps
     gestureRecognizer.cumulatedAngle += angle
-    HDTimeLabel.text = ("\(gestureRecognizer.cumulatedAngle)")
+
+    HDTimeLabel.text = ("\(Int(gestureRecognizer.cumulatedAngle/6))")
     print("CUMULATED ANGLE \(gestureRecognizer.cumulatedAngle)")
+    
+    if Int(gestureRecognizer.cumulatedAngle) != (Int(gestureRecognizer.cumulatedAngle) + Int(angle)) {
+      dialImageView.transform = dialImageView.transform.rotated(by: CGFloat(gestureRecognizer.cumulatedAngle))
+    }
+
     // call delegate
     //      if (target?.responds(to: #selector(rotation)))! {
     
