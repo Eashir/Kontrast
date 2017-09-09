@@ -9,6 +9,6 @@
 import UIKit
 import Foundation
 
-class Dial {
+open class Dial {
   
 }

@@ -18,6 +18,11 @@ import UIKit.UIGestureRecognizerSubclass
 //  func finalAngle(_ angle: CGFloat)
 //}
 
+enum dialType {
+  case hot
+  case cold
+}
+
 class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
   var midPoint = CGPoint.zero
   var innerRadius: CGFloat = 0.0
@@ -66,21 +71,21 @@ extension OneFingerRotationGestureRecognizer {
 
 extension HomeViewController: UIGestureRecognizerDelegate {
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if gestureRecognizer.state == .failed {
+    if HGestureRecognizer.state == .failed {
       return
     }
-    
-    let midPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
-    let outRadius = circularProgress.frame.size.width / 2
+
+    let midPoint = CGPoint(x: HCircularProgress.frame.origin.x + HCircularProgress.frame.size.width / 2, y: HCircularProgress.frame.origin.y + HCircularProgress.frame.size.height / 2)
+    let outRadius = HCircularProgress.frame.size.width / 2
     
     let nowPoint: CGPoint? = touches.first?.location(in: view)
     let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
     // make sure the new point is within the area
-    let distance: CGFloat = gestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
+    let distance: CGFloat = HGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
     
     //    if innerRadius <= distance && distance <= outerRadius {
     // calculate rotation angle between two points
-    var angle: CGFloat = gestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
+    var angle: CGFloat = HGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
     // fix value, if the 12 o'clock position is between prevPoint and nowPoint
     if angle > 180 {
       angle -= 360
@@ -90,13 +95,13 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     }
     
     // sum up single steps
-    gestureRecognizer.cumulatedAngle += angle
+    HGestureRecognizer.cumulatedAngle += angle
 
-    HDTimeLabel.text = ("\(Int(gestureRecognizer.cumulatedAngle/6))")
-    print("CUMULATED ANGLE \(gestureRecognizer.cumulatedAngle)")
+    HTimeLabel.text = ("\(Int(HGestureRecognizer.cumulatedAngle/6))")
+    print("CUMULATED ANGLE \(HGestureRecognizer.cumulatedAngle)")
     
-    if Int(gestureRecognizer.cumulatedAngle) != (Int(gestureRecognizer.cumulatedAngle) + Int(angle)) {
-      dialImageView.transform = dialImageView.transform.rotated(by: CGFloat(gestureRecognizer.cumulatedAngle))
+    if Int(HGestureRecognizer.cumulatedAngle) != (Int(HGestureRecognizer.cumulatedAngle) + Int(angle)) {
+      HImageView.transform = HImageView.transform.rotated(by: CGFloat(HGestureRecognizer.cumulatedAngle))
     }
 
     // call delegate
