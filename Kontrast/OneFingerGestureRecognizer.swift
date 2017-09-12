@@ -97,12 +97,12 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     // sum up single steps
     HGestureRecognizer.cumulatedAngle += angle
 
-    HTimeLabel.text = ("\(Int(HGestureRecognizer.cumulatedAngle/6))")
+    timeLabel.text = ("\(Int(HGestureRecognizer.cumulatedAngle/6))")
     print("CUMULATED ANGLE \(HGestureRecognizer.cumulatedAngle)")
     
-    if Int(HGestureRecognizer.cumulatedAngle) != (Int(HGestureRecognizer.cumulatedAngle) + Int(angle)) {
-      HImageView.transform = HImageView.transform.rotated(by: CGFloat(HGestureRecognizer.cumulatedAngle))
-    }
+//    if Int(HGestureRecognizer.cumulatedAngle) != (Int(HGestureRecognizer.cumulatedAngle) + Int(angle)) {
+//      HCircle.transform = HCircle.transform.rotated(by: CGFloat(HGestureRecognizer.cumulatedAngle))
+//    }
 
     // call delegate
     //      if (target?.responds(to: #selector(rotation)))! {

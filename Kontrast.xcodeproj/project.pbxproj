@@ -16,6 +16,7 @@
 		CC066C3E1F4E0BF5005E0D2A /* KontrastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C3D1F4E0BF5005E0D2A /* KontrastUITests.swift */; };
 		CC066C4C1F4E0C2B005E0D2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C4B1F4E0C2B005E0D2A /* Constants.swift */; };
 		CC066C4E1F4E0C30005E0D2A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C4D1F4E0C30005E0D2A /* Extensions.swift */; };
+		CC0D9F9B1F6680E100858DDF /* RadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */; };
 		CC1BE6CD1F5CBD5800CADE6D /* Dial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6CC1F5CBD5800CADE6D /* Dial.swift */; };
 		CC1BE6CF1F5CDD7E00CADE6D /* HomeVC+Vars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6CE1F5CDD7E00CADE6D /* HomeVC+Vars.swift */; };
 		CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */; };
@@ -62,6 +63,7 @@
 		CC066C3F1F4E0BF5005E0D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC066C4B1F4E0C2B005E0D2A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC066C4D1F4E0C30005E0D2A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradient.swift; sourceTree = "<group>"; };
 		CC1BE6CC1F5CBD5800CADE6D /* Dial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
 		CC1BE6CE1F5CDD7E00CADE6D /* HomeVC+Vars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HomeVC+Vars.swift"; sourceTree = "<group>"; };
 		CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFingerGestureRecognizer.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */,
+				CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */,
 				CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */,
 				CC1BE6CE1F5CDD7E00CADE6D /* HomeVC+Vars.swift */,
 				CC1BE6CC1F5CBD5800CADE6D /* Dial.swift */,
@@ -480,6 +483,7 @@
 			files = (
 				CC066C201F4E0BF4005E0D2A /* HomeViewController.swift in Sources */,
 				CC066C1E1F4E0BF4005E0D2A /* AppDelegate.swift in Sources */,
+				CC0D9F9B1F6680E100858DDF /* RadialGradient.swift in Sources */,
 				CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */,
 				CC1BE6CD1F5CBD5800CADE6D /* Dial.swift in Sources */,
 				CC066C4C1F4E0C2B005E0D2A /* Constants.swift in Sources */,
