@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     view.addSubview(CCircle)
     view.addSubview(CCircularProgress)
     view.addSubview(CImageView)
-    view.addSubview(animateButton)
+    view.addSubview(startButton)
   }
   
   func configureConstraints() {
@@ -111,7 +111,7 @@ class HomeViewController: UIViewController {
       make.centerY.equalTo(CCircularProgress.snp.centerY)
     }
     
-    animateButton.snp.makeConstraints { (make) in
+    startButton.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.bottom.equalToSuperview().offset(-24)
       make.width.equalTo(100)
@@ -125,19 +125,16 @@ class HomeViewController: UIViewController {
     let HOutRadius = HCircularProgress.frame.size.width / 2
     HGestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: HMidPoint, innerRadius: HOutRadius / 3, outerRadius: HOutRadius)
     HCircularProgress.addGestureRecognizer(HGestureRecognizer)
-    
-    //    let CMidPoint = CGPoint(x: HCircularProgress.frame.origin.x + HCircularProgress.frame.size.width / 2, y: HCircularProgress.frame.origin.y + HCircularProgress.frame.size.height / 2)
-    //    let COutRadius = HCircularProgress.frame.size.width / 2
-    //    CGestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: CMidPoint, innerRadius: COutRadius / 3, outerRadius: COutRadius)
-    //    CCircularProgress.addGestureRecognizer(CGestureRecognizer)
   }
   
   func roundOutViews() {
     HCircle.layoutIfNeeded()
     CCircle.layoutIfNeeded()
+    startButton.layoutIfNeeded()
     
     HCircle.makeViewCircular()
     CCircle.makeViewCircular()
+    startButton.roundButton()
   }
   
   func playSound() {
@@ -283,14 +280,14 @@ class HomeViewController: UIViewController {
     return imageView
   }()
   
-  lazy var animateButton: UIButton = {
+  lazy var startButton: UIButton = {
     let button = UIButton()
     button.addTarget(self, action: #selector(animateButtonTapped(_:)), for: .touchUpInside)
-    button.backgroundColor = ColorPalette.secondaryDark
+    button.backgroundColor = ColorPalette.primary
     button.contentMode = .center
     button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.white.cgColor
-    button.setTitleColor(ColorPalette.white, for: .normal)
+    button.layer.borderColor = ColorPalette.secondary.cgColor
+    button.setTitleColor(ColorPalette.secondary, for: .normal)
     button.setTitle("START", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
     button.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
