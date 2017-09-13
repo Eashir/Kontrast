@@ -83,7 +83,11 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     // make sure the new point is within the area
     let distance: CGFloat = HGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
     
-    //    if innerRadius <= distance && distance <= outerRadius {
+    //Makes sure that the rotation gesture is on the 
+    guard HGestureRecognizer.innerRadius <= distance && distance <= outRadius else {
+      HGestureRecognizer.state = .failed
+      return
+    }
     // calculate rotation angle between two points
     var angle: CGFloat = HGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
     // fix value, if the 12 o'clock position is between prevPoint and nowPoint
@@ -98,7 +102,6 @@ extension HomeViewController: UIGestureRecognizerDelegate {
       return
     }
     
-    
     HGestureRecognizer.cumulatedAngle += angle
 
     timeLabel.text = ("\(Int(HGestureRecognizer.cumulatedAngle/6))")
@@ -107,7 +110,7 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     if Int(HGestureRecognizer.cumulatedAngle) != (Int(HGestureRecognizer.cumulatedAngle) + Int(angle)) {
       HLinesImageView.transform = HLinesImageView.transform.rotated(by: CGFloat(HGestureRecognizer.cumulatedAngle))
     }
-
+    
     // call delegate
     //      if (target?.responds(to: #selector(rotation)))! {
     

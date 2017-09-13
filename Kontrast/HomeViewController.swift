@@ -43,13 +43,13 @@ class HomeViewController: UIViewController {
   
   func setupViewHierarchy() {
     view.addSubview(radialBackgroundView)
-    view.addSubview(HCircularProgress)
-    view.addSubview(HLinesImageView)
-    view.addSubview(HImageView)
-    view.addSubview(timeLabel)
     view.addSubview(CCircle)
     view.addSubview(CCircularProgress)
     view.addSubview(CImageView)
+    view.addSubview(HCircularProgress)
+    view.addSubview(HLinesImageView)
+    view.addSubview(HDialImageView)
+    view.addSubview(timeLabel)
     view.addSubview(startButton)
   }
   
@@ -62,7 +62,8 @@ class HomeViewController: UIViewController {
     
     HCircularProgress.snp.makeConstraints { (make) in
       make.centerX.centerY.equalToSuperview()
-      make.height.width.equalTo(200)
+      make.height.equalToSuperview().multipliedBy(0.4)
+      make.width.equalTo(HCircularProgress.snp.height)
     }
     
     HLinesImageView.snp.makeConstraints { (make) in
@@ -72,7 +73,7 @@ class HomeViewController: UIViewController {
       make.centerY.equalTo(HCircularProgress.snp.centerY)
     }
     
-    HImageView.snp.makeConstraints { (make) in
+    HDialImageView.snp.makeConstraints { (make) in
       make.height.equalTo(HCircularProgress.snp.height).multipliedBy(0.7)
       make.width.equalTo(HCircularProgress.snp.width).multipliedBy(0.7)
       make.centerX.equalTo(HCircularProgress.snp.centerX)
@@ -80,16 +81,13 @@ class HomeViewController: UIViewController {
     }
     
     timeLabel.snp.makeConstraints { (make) in
-      make.centerX.equalTo(HImageView.snp.centerX)
-      make.centerY.equalTo(HImageView.snp.centerY)
+      make.centerX.equalTo(HDialImageView.snp.centerX)
+      make.centerY.equalTo(HDialImageView.snp.centerY)
     }
     
     CCircularProgress.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.top.equalTo(HCircularProgress.snp.bottom).offset(24)
-      make.height.width.equalTo(200)
+      make.edges.equalTo(HCircularProgress)
     }
-    
     
     CCircle.snp.makeConstraints { (make) in
       make.height.equalTo(CCircularProgress.snp.height).multipliedBy(0.8)
@@ -152,6 +150,7 @@ class HomeViewController: UIViewController {
   func animateButtonTapped(_ sender: UIButton) {
     print("\(Double(HGestureRecognizer.cumulatedAngle))")
     currentCycle = 0
+    HLinesImageView.removeFromSuperview()
     animate()
   }
   
@@ -215,7 +214,7 @@ class HomeViewController: UIViewController {
     return progress
   }()
   
-  lazy var HImageView: UIImageView = {
+  lazy var HDialImageView: UIImageView = {
     let imageView = UIImageView()
     let image = UIImage(named: "dial")
     imageView.image = image
