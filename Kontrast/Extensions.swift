@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIButton {
   func roundButton() {
-    self.layer.cornerRadius = 4
+    self.layer.cornerRadius = 25
   }
   
   func makeButtonCircular() {

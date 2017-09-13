@@ -14,7 +14,7 @@ open class Dial: UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
+   
     setupViewHierarchy()
     configureConstraints()
   }
@@ -28,17 +28,27 @@ open class Dial: UIView {
   }
   
   func configureConstraints() {
+    circularProgress.snp.makeConstraints { (make) in
+      make.centerX.centerY.equalToSuperview()
+      make.height.width.equalTo(200)
+    }
     
+    dialImageView.snp.makeConstraints { (make) in
+      make.height.equalTo(circularProgress.snp.height).multipliedBy(0.7)
+      make.width.equalTo(circularProgress.snp.width).multipliedBy(0.7)
+      make.centerX.equalTo(circularProgress.snp.centerX)
+      make.centerY.equalTo(circularProgress.snp.centerY)
+    }
+    
+    linesImageView.snp.makeConstraints { (make) in
+      make.height.equalTo(circularProgress.snp.height).multipliedBy(0.8)
+      make.width.equalTo(circularProgress.snp.width).multipliedBy(0.8)
+      make.centerX.equalTo(circularProgress.snp.centerX)
+      make.centerY.equalTo(circularProgress.snp.centerY)
+    }
   }
-  
-  lazy var HCircle: UIView = {
-    let view = UIView()
-    view.backgroundColor = ColorPalette.secondary
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
-  }()
-  
-  lazy var HCircularProgress: KDCircularProgress = {
+
+  lazy var circularProgress: KDCircularProgress = {
     let progress = KDCircularProgress()
     progress.clockwise = true
     progress.glowMode = .forward
@@ -54,9 +64,18 @@ open class Dial: UIView {
     return progress
   }()
   
-  lazy var HImageView: UIImageView = {
+  lazy var dialImageView: UIImageView = {
     let imageView = UIImageView()
     let image = UIImage(named: "dial")
+    imageView.image = image
+    imageView.contentMode = .scaleAspectFit
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+  
+  lazy var linesImageView: UIImageView = {
+    let imageView = UIImageView()
+    let image = UIImage(named: "lines")
     imageView.image = image
     imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false

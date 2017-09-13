@@ -4,12 +4,18 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - KDCircularProgress (1.5.2)
+  - Realm (2.9.1):
+    - Realm/Headers (= 2.9.1)
+  - Realm/Headers (2.9.1)
+  - RealmSwift (2.9.1):
+    - Realm (= 2.9.1)
   - SnapKit (3.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - KDCircularProgress
+  - RealmSwift
   - SnapKit
 
 EXTERNAL SOURCES:
@@ -25,8 +31,10 @@ SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   KDCircularProgress: 12f677b2deb02409ab48c6cae1898d146b8ad549
+  Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
+  RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
 
-PODFILE CHECKSUM: 0a29e7acf636ebf42a2fabe0e030863431b03629
+PODFILE CHECKSUM: db7bd9aaa59066569112cc937cfa72f3bcd510c1
 
 COCOAPODS: 1.3.1

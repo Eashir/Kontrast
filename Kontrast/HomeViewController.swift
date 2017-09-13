@@ -11,12 +11,13 @@ import SnapKit
 import KDCircularProgress
 import AVFoundation
 import QuartzCore
+import RealmSwift
 
 class HomeViewController: UIViewController {
   
-  var HDAngle: CGFloat = 0.0
-  var CDAngle: CGFloat = 0.0
+  var maxHTime = CGFloat()
   var player: AVAudioPlayer?
+  var realm = try! Realm()
   
   var currentCycle = 0
   var numberOfCycles = 3
@@ -30,6 +31,7 @@ class HomeViewController: UIViewController {
     do {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.mixWithOthers)
     } catch { }
+    
     setupViewHierarchy()
     configureConstraints()
     configureGestureRecognizers()
@@ -41,9 +43,8 @@ class HomeViewController: UIViewController {
   
   func setupViewHierarchy() {
     view.addSubview(radialBackgroundView)
-    view.addSubview(timeView)
-    view.addSubview(HCircle)
     view.addSubview(HCircularProgress)
+    view.addSubview(HLinesImageView)
     view.addSubview(HImageView)
     view.addSubview(timeLabel)
     view.addSubview(CCircle)
@@ -53,13 +54,6 @@ class HomeViewController: UIViewController {
   }
   
   func configureConstraints() {
-    
-    timeView.snp.makeConstraints { (make) in
-      make.width.equalTo(50)
-      make.height.equalTo(30)
-      make.centerX.equalToSuperview()
-      make.bottom.equalTo(HCircularProgress.snp.top).offset(-Layout.standardOffset)
-    }
     
     radialBackgroundView.snp.makeConstraints { (make) in
       make.leading.top.trailing.equalToSuperview()
@@ -71,7 +65,7 @@ class HomeViewController: UIViewController {
       make.height.width.equalTo(200)
     }
     
-    HCircle.snp.makeConstraints { (make) in
+    HLinesImageView.snp.makeConstraints { (make) in
       make.height.equalTo(HCircularProgress.snp.height).multipliedBy(0.8)
       make.width.equalTo(HCircularProgress.snp.width).multipliedBy(0.8)
       make.centerX.equalTo(HCircularProgress.snp.centerX)
@@ -86,8 +80,8 @@ class HomeViewController: UIViewController {
     }
     
     timeLabel.snp.makeConstraints { (make) in
-      make.centerX.equalTo(timeView.snp.centerX)
-      make.centerY.equalTo(timeView.snp.centerY)
+      make.centerX.equalTo(HImageView.snp.centerX)
+      make.centerY.equalTo(HImageView.snp.centerY)
     }
     
     CCircularProgress.snp.makeConstraints { (make) in
@@ -128,12 +122,10 @@ class HomeViewController: UIViewController {
   }
   
   func roundOutViews() {
-    HCircle.layoutIfNeeded()
     CCircle.layoutIfNeeded()
     startButton.layoutIfNeeded()
     
-    HCircle.makeViewCircular()
-    CCircle.makeViewCircular()
+      CCircle.makeViewCircular()
     startButton.roundButton()
   }
   
@@ -199,28 +191,13 @@ class HomeViewController: UIViewController {
     return view
   }()
   
-  lazy var timeView: UIView = {
-    let view = UIView()
-    view.backgroundColor = ColorPalette.secondary
-    view.roundView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
-  }()
-  
   lazy var timeLabel: UILabel = {
     let label = UILabel()
-    label.textColor = ColorPalette.white
+    label.textColor = ColorPalette.secondary
     return label
   }()
   
   //Hot Dial
-  
-  lazy var HCircle: UIView = {
-    let view = UIView()
-    view.backgroundColor = ColorPalette.secondary
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
-  }()
   
   lazy var HCircularProgress: KDCircularProgress = {
     let progress = KDCircularProgress()
@@ -247,6 +224,15 @@ class HomeViewController: UIViewController {
     return imageView
   }()
   
+  lazy var HLinesImageView: UIImageView = {
+    let imageView = UIImageView()
+    let image = UIImage(named: "lines")
+    imageView.image = image
+    imageView.contentMode = .scaleAspectFit
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+
   //Cold Dial
   lazy var CCircle: UIView = {
     let view = UIView()
@@ -296,4 +282,14 @@ class HomeViewController: UIViewController {
     button.translatesAutoresizingMaskIntoConstraints = false
     return button
   }()
+  
+  lazy var settingsImageView: UIImageView = {
+    let imageView = UIImageView()
+    let image = UIImage(named: "settings")
+    imageView.image = image
+    imageView.contentMode = .scaleAspectFit
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    return imageView
+  }()
+
 }
