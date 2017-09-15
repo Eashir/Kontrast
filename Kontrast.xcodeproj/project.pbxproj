@@ -16,10 +16,11 @@
 		CC066C3E1F4E0BF5005E0D2A /* KontrastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C3D1F4E0BF5005E0D2A /* KontrastUITests.swift */; };
 		CC066C4C1F4E0C2B005E0D2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C4B1F4E0C2B005E0D2A /* Constants.swift */; };
 		CC066C4E1F4E0C30005E0D2A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C4D1F4E0C30005E0D2A /* Extensions.swift */; };
+		CC08F25D1F6B9A8B00C8A306 /* SwiftyDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */; };
 		CC0D9F9B1F6680E100858DDF /* RadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */; };
-		CC1BE6CD1F5CBD5800CADE6D /* Dial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6CC1F5CBD5800CADE6D /* Dial.swift */; };
-		CC1BE6CF1F5CDD7E00CADE6D /* HomeVC+Vars.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6CE1F5CDD7E00CADE6D /* HomeVC+Vars.swift */; };
 		CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */; };
+		CC6C23C21F6A17B600079133 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6C23C11F6A17B600079133 /* SettingsViewController.swift */; };
+		CC931E9D1F6A7EF50096FF28 /* App Logo K.png in Resources */ = {isa = PBXBuildFile; fileRef = CC931E9C1F6A7EF50096FF28 /* App Logo K.png */; };
 		DB5731CA07EB36A72B9EDF25 /* Pods_Kontrast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C4240B8D96F08C16417DFB /* Pods_Kontrast.framework */; };
 		E13D3E08BA9434A750466DF5 /* Pods_KontrastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50257CB964149DACBB68B6 /* Pods_KontrastUITests.framework */; };
 /* End PBXBuildFile section */
@@ -63,10 +64,11 @@
 		CC066C3F1F4E0BF5005E0D2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC066C4B1F4E0C2B005E0D2A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC066C4D1F4E0C30005E0D2A /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyDefaults.swift; sourceTree = "<group>"; };
 		CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradient.swift; sourceTree = "<group>"; };
-		CC1BE6CC1F5CBD5800CADE6D /* Dial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
-		CC1BE6CE1F5CDD7E00CADE6D /* HomeVC+Vars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HomeVC+Vars.swift"; sourceTree = "<group>"; };
 		CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFingerGestureRecognizer.swift; sourceTree = "<group>"; };
+		CC6C23C11F6A17B600079133 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		CC931E9C1F6A7EF50096FF28 /* App Logo K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Logo K.png"; sourceTree = "<group>"; };
 		D7094E44EA270DEC7B549959 /* Pods-KontrastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastUITests/Pods-KontrastUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE8CEBC68A0983862FE7219A /* Pods-KontrastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastTests/Pods-KontrastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,14 +149,14 @@
 		CC066C1C1F4E0BF4005E0D2A /* Kontrast */ = {
 			isa = PBXGroup;
 			children = (
-				CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */,
-				CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */,
+				CC6C23C31F6A17BF00079133 /* Controllers */,
+				CC08F2571F6B2A8900C8A306 /* Views */,
 				CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */,
-				CC1BE6CE1F5CDD7E00CADE6D /* HomeVC+Vars.swift */,
-				CC1BE6CC1F5CBD5800CADE6D /* Dial.swift */,
+				CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */,
 				CC066C4B1F4E0C2B005E0D2A /* Constants.swift */,
 				CC066C4D1F4E0C30005E0D2A /* Extensions.swift */,
 				CC066C241F4E0BF4005E0D2A /* Assets.xcassets */,
+				CC931E9C1F6A7EF50096FF28 /* App Logo K.png */,
 				CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */,
 				CC066C261F4E0BF4005E0D2A /* LaunchScreen.storyboard */,
 				CC066C291F4E0BF4005E0D2A /* Info.plist */,
@@ -178,6 +180,23 @@
 				CC066C3F1F4E0BF5005E0D2A /* Info.plist */,
 			);
 			path = KontrastUITests;
+			sourceTree = "<group>";
+		};
+		CC08F2571F6B2A8900C8A306 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CC6C23C31F6A17BF00079133 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */,
+				CC6C23C11F6A17B600079133 /* SettingsViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +278,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 88EN34P563;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					CC066C2D1F4E0BF4005E0D2A = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -299,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC931E9D1F6A7EF50096FF28 /* App Logo K.png in Resources */,
 				CC066C281F4E0BF4005E0D2A /* LaunchScreen.storyboard in Resources */,
 				CC066C251F4E0BF4005E0D2A /* Assets.xcassets in Resources */,
 			);
@@ -396,19 +421,19 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kontrast/Pods-Kontrast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCircularProgress.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -489,10 +514,10 @@
 				CC066C1E1F4E0BF4005E0D2A /* AppDelegate.swift in Sources */,
 				CC0D9F9B1F6680E100858DDF /* RadialGradient.swift in Sources */,
 				CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */,
-				CC1BE6CD1F5CBD5800CADE6D /* Dial.swift in Sources */,
 				CC066C4C1F4E0C2B005E0D2A /* Constants.swift in Sources */,
+				CC08F25D1F6B9A8B00C8A306 /* SwiftyDefaults.swift in Sources */,
 				CC066C4E1F4E0C30005E0D2A /* Extensions.swift in Sources */,
-				CC1BE6CF1F5CDD7E00CADE6D /* HomeVC+Vars.swift in Sources */,
+				CC6C23C21F6A17B600079133 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

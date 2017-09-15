@@ -31,13 +31,17 @@ class RadialGradientLayer: CALayer {
     })
   }
   
-  override init() {
+  required override init() {
     super.init()
     needsDisplayOnBoundsChange = true
   }
   
-  required init(coder aDecoder: NSCoder) {
-    super.init()
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
+  required override init(layer: Any) {
+    super.init(layer: layer)
   }
   
   override func draw(in ctx: CGContext) {

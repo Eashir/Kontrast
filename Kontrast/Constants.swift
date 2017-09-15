@@ -12,6 +12,7 @@ import ChameleonFramework
 struct ColorPalette {
   
   static var primary = HexColor("FFFFFF")!
+  static var primaryLight = HexColor("F3F1EE")!
   static var primaryDark = HexColor("E1DDD8")!
   
   static var secondary = HexColor("5f5a53")!
@@ -27,6 +28,10 @@ struct Layout {
   static var screenWidth = UIScreen.main.bounds.width
   static var screenHeight = UIScreen.main.bounds.height
   
+  static var statusBarHeight = UIApplication.shared.statusBarFrame.height
+  
   static var standardOffset = 8
   static var mediumOffset = 24
+  static var largeOffset = 24
+  
 }

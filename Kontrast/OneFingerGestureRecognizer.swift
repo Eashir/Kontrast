@@ -7,30 +7,17 @@
 //
 
 import Foundation
+import SwiftyUserDefaults
 import UIKit
 import UIKit.UIGestureRecognizerSubclass
-
-//protocol OneFingerRotationGestureRecognizerDelegate: NSObjectProtocol {
-//   /** A rotation gesture is in progress, the frist argument is the rotation-angle in degrees. */
-//  func rotation(_ angle: CGFloat)
-//  
-//  /** The gesture is finished, the first argument is the total rotation-angle. */
-//  func finalAngle(_ angle: CGFloat)
-//}
-
-enum dialType {
-  case hot
-  case cold
-}
 
 class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
   var midPoint = CGPoint.zero
   var innerRadius: CGFloat = 0.0
   var outerRadius: CGFloat = 0.0
   var cumulatedAngle: CGFloat = 0.0
-//  weak var target: OneFingerRotationGestureRecognizerDelegate?
   
-  init(midPoint: CGPoint, innerRadius: CGFloat, outerRadius: CGFloat) {
+  init(midPoint: CGPoint, innerRadius: CGFloat, outerRadius: CGFloat, cumulatedAngle: CGFloat) {
     super.init(target: nil, action: nil)
   }
   
@@ -47,7 +34,7 @@ class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
     let d: CGFloat = endLineB.y - beginLineB.y
     let atanA: CGFloat = atan2(a, b)
     let atanB: CGFloat = atan2(c, d)
-    // convert radiants to degrees
+    // convert radians to degrees
     return (atanA - atanB) * 180 / .pi
   }
  }
@@ -55,8 +42,6 @@ class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
 // MARK: - UIGestureRecognizer implementation
 
 extension OneFingerRotationGestureRecognizer {
-  /** Calculates the distance between point1 and point 2. */
-  
   override func reset() {
     cumulatedAngle = 0
   }
@@ -70,27 +55,27 @@ extension OneFingerRotationGestureRecognizer {
 }
 
 extension HomeViewController: UIGestureRecognizerDelegate {
+  
   override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if HGestureRecognizer.state == .failed {
+    if rotationGestureRecognizer.state == .failed {
       return
     }
-
-    let midPoint = CGPoint(x: HCircularProgress.frame.origin.x + HCircularProgress.frame.size.width / 2, y: HCircularProgress.frame.origin.y + HCircularProgress.frame.size.height / 2)
-    let outRadius = HCircularProgress.frame.size.width / 2
     
+    let midPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
+    let outRadius = circularProgress.frame.size.width / 2
     let nowPoint: CGPoint? = touches.first?.location(in: view)
     let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
-    // make sure the new point is within the area
-    let distance: CGFloat = HGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
+    //Make sure the new point is within the area
+    let distance: CGFloat = rotationGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
     
-    //Makes sure that the rotation gesture is on the 
-    guard HGestureRecognizer.innerRadius <= distance && distance <= outRadius else {
-      HGestureRecognizer.state = .failed
+    //Make sure that the rotation gesture is on the circular progress
+    guard rotationGestureRecognizer.innerRadius <= distance && distance <= outRadius else {
+      rotationGestureRecognizer.state = .failed
       return
     }
-    // calculate rotation angle between two points
-    var angle: CGFloat = HGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
-    // fix value, if the 12 o'clock position is between prevPoint and nowPoint
+    
+    //Calculate angle between two touch points
+    var angle: CGFloat = rotationGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
     if angle > 180 {
       angle -= 360
     }
@@ -98,28 +83,25 @@ extension HomeViewController: UIGestureRecognizerDelegate {
       angle += 360
     }
     
-    guard (HGestureRecognizer.cumulatedAngle + angle)/6 > 0 else {
+    let duration = Double((rotationGestureRecognizer.cumulatedAngle + angle)/6)
+    
+    guard duration > 0 && duration <= Defaults[.hotWaterDuration] else {
       return
     }
     
-    HGestureRecognizer.cumulatedAngle += angle
-
-    timeLabel.text = ("\(Int(HGestureRecognizer.cumulatedAngle/6))")
-    print("CUMULATED ANGLE \(HGestureRecognizer.cumulatedAngle)")
+    rotationGestureRecognizer.cumulatedAngle += angle
     
-    if Int(HGestureRecognizer.cumulatedAngle) != (Int(HGestureRecognizer.cumulatedAngle) + Int(angle)) {
-      HLinesImageView.transform = HLinesImageView.transform.rotated(by: CGFloat(HGestureRecognizer.cumulatedAngle))
+    let totalTime = Double((rotationGestureRecognizer.cumulatedAngle)/6)
+    
+    Defaults[.hotWaterDuration] = totalTime
+    Defaults[.coldWaterDuration] = totalTime / Double(Defaults[.hotToColdRatio])
+    
+    timeLabel.text = "\(Defaults[.hotWaterDuration])"
+    print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
+    
+    if Int(rotationGestureRecognizer.cumulatedAngle) != (Int(rotationGestureRecognizer.cumulatedAngle) + Int(angle)) {
+      linesImageView.transform = linesImageView.transform.rotated(by: CGFloat(rotationGestureRecognizer.cumulatedAngle))
     }
-    
-    // call delegate
-    //      if (target?.responds(to: #selector(rotation)))! {
-    
-    //    target?.rotation(angle)
-    //      }
-    //    }
-    //    else {
-    //      // finger moved outside the area
-    //      state = UIGestureRecognizerState.failed
-    //    }
   }
+  
 }
