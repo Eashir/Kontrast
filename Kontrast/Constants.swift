@@ -35,3 +35,9 @@ struct Layout {
   static var largeOffset = 24
   
 }
+
+struct FontSize {
+  static var standardSize: CGFloat = 14
+  static var mediumSize: CGFloat = 20
+  static var largeSize: CGFloat = 24
+}

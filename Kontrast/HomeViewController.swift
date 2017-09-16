@@ -77,7 +77,6 @@ class HomeViewController: UIViewController {
       print("asset not found")
       return
     }
-    
     do {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
       try AVAudioSession.sharedInstance().setActive(true)
@@ -92,7 +91,7 @@ class HomeViewController: UIViewController {
   
   //MARK: - Actions
   
-  func onStartOrStop(_ sender: UIButton) {
+  func startOrStopTapped(_ sender: UIButton) {
     print("ANIMATE BUTTON TAPPED, CUMULATED ANGLE: \(Double(rotationGestureRecognizer.cumulatedAngle))")
     self.circularProgress.set(colors: UIColor.white, UIColor.orange)
     currentCycle = 0
@@ -117,34 +116,36 @@ class HomeViewController: UIViewController {
     transition.duration = 0.5
     transition.type = kCAGravityCenter
     transition.subtype = kCATransitionFromRight
-    view.window!.layer.add(transition, forKey: kCATransition)
-    present(settingsVC, animated: false, completion: nil)
+    self.navigationController?.view.window?.layer.add(transition, forKey: kCATransition)
+    self.navigationController?.pushViewController(settingsVC, animated: false)
   }
   
   func animate() {
-    guard currentCycle != Defaults[.numberOfCycles] else {
+    guard currentCycle != Int(Defaults[.numberOfCycles]) else {
       self.startButton.setTitle("START", for: .normal)
       return
     }
-    self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Defaults[.hotWaterDuration]) { completed in
+    
+    //Adding 2 to durations to allow time to switch water temp
+    self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.hotDuration] + 2)) { completed in
       guard completed != false else {
-        print("HCProgess was interrupted")
+        print("Hot Progess was interrupted")
         self.startButton.setTitle("START", for: .normal)
         return
       }
       self.playSound()
-      print("HCProgress completed")
+      print("Hot Progress completed")
       self.circularProgress.set(colors: UIColor.white, UIColor.cyan)
-      self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Defaults[.coldWaterDuration]) { completed in
+      self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.coldDuration] + 2)) { completed in
         guard completed != false else {
-          print("CCProgess was interrupted")
+          print("Cold Progess was interrupted")
           self.startButton.setTitle("START", for: .normal)
           return
         }
         self.playSound()
         self.currentCycle += 1
         self.animate()
-        print("CCProgress completed")
+        print("Cold Progress completed")
         self.circularProgress.set(colors: UIColor.white, UIColor.orange)
       }
     }
@@ -152,8 +153,8 @@ class HomeViewController: UIViewController {
   
   func addSettingsAction() {
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(settingsTapped(tapGestureRecognizer:)))
-    settingsView.isUserInteractionEnabled = true
-    settingsView.addGestureRecognizer(tapGestureRecognizer)
+    settingsActionView.isUserInteractionEnabled = true
+    settingsActionView.addGestureRecognizer(tapGestureRecognizer)
   }
   
   //MARK: - Setup
@@ -166,7 +167,7 @@ class HomeViewController: UIViewController {
     view.addSubview(timeLabel)
     view.addSubview(startButton)
     view.addSubview(settingsImageView)
-    view.addSubview(settingsView)
+    view.addSubview(settingsActionView)
   }
   
   func configureConstraints() {
@@ -208,7 +209,7 @@ class HomeViewController: UIViewController {
       make.height.equalTo(50)
     }
     
-    settingsView.snp.makeConstraints { (make) in
+    settingsActionView.snp.makeConstraints { (make) in
       make.centerX.equalTo(settingsImageView.snp.centerX)
       make.centerY.equalTo(settingsImageView.snp.centerY)
       make.size.equalTo(100)
@@ -222,10 +223,10 @@ class HomeViewController: UIViewController {
   }
   
   func configureGestureRecognizers() {
-    // calculate center and radius of the control
+    //Calculate center and radius of the control
     let HMidPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
     let HOutRadius = circularProgress.frame.size.width / 2
-    let cumulatedAngle = CGFloat(Defaults[.hotWaterDuration] * 6)
+    let cumulatedAngle = CGFloat(Defaults[.hotDuration] * 6)
     
     rotationGestureRecognizer = OneFingerRotationGestureRecognizer(midPoint: HMidPoint, innerRadius: HOutRadius / 3, outerRadius: HOutRadius, cumulatedAngle: cumulatedAngle)
     circularProgress.addGestureRecognizer(rotationGestureRecognizer)
@@ -242,8 +243,8 @@ class HomeViewController: UIViewController {
   lazy var timeLabel: UILabel = {
     let label = UILabel()
     label.textColor = ColorPalette.secondary
-    label.font = UIFont(name: "HelveticaNeue-Light", size: 24)
-    label.text = "\(Int(Defaults[.hotWaterDuration]))"
+    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.largeSize)
+    label.text = "\(Int(Defaults[.hotDuration]))"
     return label
   }()
   
@@ -284,7 +285,7 @@ class HomeViewController: UIViewController {
   
   lazy var startButton: UIButton = {
     let button = UIButton()
-    button.addTarget(self, action: #selector(onStartOrStop(_:)), for: .touchUpInside)
+    button.addTarget(self, action: #selector(startOrStopTapped(_:)), for: .touchUpInside)
     button.backgroundColor = ColorPalette.primaryLight
     button.contentMode = .center
     button.layer.borderWidth = 2
@@ -299,7 +300,7 @@ class HomeViewController: UIViewController {
     return button
   }()
   
-  lazy var settingsView: UIView = {
+  lazy var settingsActionView: UIView = {
     let view = UIView()
     view.backgroundColor = .clear
     view.translatesAutoresizingMaskIntoConstraints = false

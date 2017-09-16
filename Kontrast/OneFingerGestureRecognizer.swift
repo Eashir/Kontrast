@@ -83,25 +83,33 @@ extension HomeViewController: UIGestureRecognizerDelegate {
       angle += 360
     }
     
-    let duration = Double((rotationGestureRecognizer.cumulatedAngle + angle)/6)
-    
-    guard duration > 0 && duration <= Defaults[.hotWaterDuration] else {
+    let duration = Int((rotationGestureRecognizer.cumulatedAngle + angle)/6)
+
+    guard duration >= 0 else {
       return
     }
     
+    let rotationAngle = Int(rotationGestureRecognizer.cumulatedAngle)
+    let totalRotationAngle = Int(rotationGestureRecognizer.cumulatedAngle) + Int(angle)
+    if totalRotationAngle > rotationAngle {
+      print("CUMULATED ANGLE: \(rotationAngle), TOTAL:  \(totalRotationAngle) ")
+      linesImageView.transform = linesImageView.transform.rotated(by: -1200.0)
+    } else if totalRotationAngle < rotationAngle {
+      linesImageView.transform = linesImageView.transform.rotated(by: 1200.0)
+    }
+
     rotationGestureRecognizer.cumulatedAngle += angle
     
-    let totalTime = Double((rotationGestureRecognizer.cumulatedAngle)/6)
+    let totalDuration = Double((rotationGestureRecognizer.cumulatedAngle)/6)
     
-    Defaults[.hotWaterDuration] = totalTime
-    Defaults[.coldWaterDuration] = totalTime / Double(Defaults[.hotToColdRatio])
+    Defaults[.hotDuration] = Int(totalDuration)
+    Defaults[.coldDuration] = Int(totalDuration) / Int(Defaults[.hotToColdRatio])
     
-    timeLabel.text = "\(Defaults[.hotWaterDuration])"
+    timeLabel.text = "\(Defaults[.hotDuration])"
     print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
     
-    if Int(rotationGestureRecognizer.cumulatedAngle) != (Int(rotationGestureRecognizer.cumulatedAngle) + Int(angle)) {
-      linesImageView.transform = linesImageView.transform.rotated(by: CGFloat(rotationGestureRecognizer.cumulatedAngle))
-    }
+    
+    
   }
   
 }
