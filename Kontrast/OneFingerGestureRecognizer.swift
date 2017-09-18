@@ -34,7 +34,7 @@ class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
     let d: CGFloat = endLineB.y - beginLineB.y
     let atanA: CGFloat = atan2(a, b)
     let atanB: CGFloat = atan2(c, d)
-    // convert radians to degrees
+    // Convert radians to degrees
     return (atanA - atanB) * 180 / .pi
   }
  }
@@ -52,64 +52,4 @@ extension OneFingerRotationGestureRecognizer {
       return
     }
   }
-}
-
-extension HomeViewController: UIGestureRecognizerDelegate {
-  
-  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-    if rotationGestureRecognizer.state == .failed {
-      return
-    }
-    
-    let midPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
-    let outRadius = circularProgress.frame.size.width / 2
-    let nowPoint: CGPoint? = touches.first?.location(in: view)
-    let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
-    //Make sure the new point is within the area
-    let distance: CGFloat = rotationGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
-    
-    //Make sure that the rotation gesture is on the circular progress
-    guard rotationGestureRecognizer.innerRadius <= distance && distance <= outRadius else {
-      rotationGestureRecognizer.state = .failed
-      return
-    }
-    
-    //Calculate angle between two touch points
-    var angle: CGFloat = rotationGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
-    if angle > 180 {
-      angle -= 360
-    }
-    else if angle < -180 {
-      angle += 360
-    }
-    
-    let duration = Int((rotationGestureRecognizer.cumulatedAngle + angle)/6)
-
-    guard duration >= 0 else {
-      return
-    }
-    
-    let rotationAngle = Int(rotationGestureRecognizer.cumulatedAngle)
-    let totalRotationAngle = Int(rotationGestureRecognizer.cumulatedAngle) + Int(angle)
-    if totalRotationAngle > rotationAngle {
-      print("CUMULATED ANGLE: \(rotationAngle), TOTAL:  \(totalRotationAngle) ")
-      linesImageView.transform = linesImageView.transform.rotated(by: -1200.0)
-    } else if totalRotationAngle < rotationAngle {
-      linesImageView.transform = linesImageView.transform.rotated(by: 1200.0)
-    }
-
-    rotationGestureRecognizer.cumulatedAngle += angle
-    
-    let totalDuration = Double((rotationGestureRecognizer.cumulatedAngle)/6)
-    
-    Defaults[.hotDuration] = Int(totalDuration)
-    Defaults[.coldDuration] = Int(totalDuration) / Int(Defaults[.hotToColdRatio])
-    
-    timeLabel.text = "\(Defaults[.hotDuration])"
-    print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
-    
-    
-    
-  }
-  
 }

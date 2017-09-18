@@ -24,17 +24,19 @@ class SettingsViewController: UIViewController {
     
     setupViewHierarchy()
     configureConstraints()
-    
-
   }
   
-  //MARK: - Methods
+  // MARK: - Methods
   
-  func discernibleInput() {
-    
+  func doesInputStartWithZero(str: String) -> Bool {
+    let characters = Array(str.characters)
+    guard String(characters[0]) != "0" else {
+      return false
+    }
+    return true
   }
   
-  //MARK: - Actions
+  // MARK: - Actions
   
   func backButtonTapped(_ sender: UIButton) {
     let homeVC = HomeViewController()
@@ -46,7 +48,7 @@ class SettingsViewController: UIViewController {
     self.navigationController?.pushViewController(homeVC, animated: false)
   }
   
-  //MARK: - Setup
+  // MARK: - Setup
   
   func setupViewHierarchy() {
     view.addSubview(radialBackgroundView)
@@ -80,7 +82,6 @@ class SettingsViewController: UIViewController {
       make.top.trailing.equalTo(cycleSettingsView)
       make.height.equalTo(30)
       make.width.equalTo(30)
-      
     }
     
     durationSettingsView.snp.makeConstraints { (make) in
@@ -128,7 +129,7 @@ class SettingsViewController: UIViewController {
     }
   }
   
-  //MARK: - Lazy Vars
+  // MARK: - Lazy Vars
   
   lazy var settingsLabel: UILabel = {
     let label = UILabel()
@@ -257,40 +258,52 @@ extension SettingsViewController: UITextFieldDelegate {
   }
   
   func textFieldDidEndEditing(_ textField: UITextField) {
-    guard activeTextField == textField, activeTextField?.text != "" else {
+    guard activeTextField == textField && activeTextField?.text != "" else {
       textField.resignFirstResponder()
-      return 
+      return
     }
-    if let validTag = activeTextField?.tag {
-      switch validTag {
-      case 1:
-        Defaults[.numberOfCycles] = Double((activeTextField?.text)!)!
-      default:
-        break
+    
+    var activeTextFieldInput = Double((activeTextField?.text)!)!
+    
+    if doesInputStartWithZero(str: (activeTextField?.text!)!) {
+      if let validTag = activeTextField?.tag {
+        
+        switch validTag {
+        case 1:
+          guard activeTextFieldInput < 20 else {
+            return
+          }
+          Defaults[.numberOfCycles] = activeTextFieldInput
+          
+        case 2:
+          guard activeTextFieldInput >=  (Double(Defaults[.coldDuration])) && activeTextFieldInput < 1200.0 else {
+            return
+          }
+          Defaults[.hotDuration] = Int((activeTextField?.text)!)!
+          Defaults[.hotToColdRatio] = (Double((activeTextField?.text)!)! / Double(Defaults[.coldDuration]))
+          
+        case 3:
+          guard activeTextFieldInput <= (Double(Defaults[.hotDuration])) && activeTextFieldInput < 1200.0 else {
+            return
+          }
+          Defaults[.hotToColdRatio] = (Double(Defaults[.hotDuration]) / activeTextFieldInput)
+        default:
+          break
+        }
       }
     }
+      
+    else {
+      activeTextFieldInput = 1.0
+      return
+    }
+    
     activeTextField = nil
     print("did end editing")
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     print("should return")
-    guard activeTextField == textField, activeTextField?.text != "" else {
-      textField.resignFirstResponder()
-      return false
-    }
-    if let validTag = activeTextField?.tag {
-      switch validTag {
-      case 1:
-        Defaults[.numberOfCycles] = Double((activeTextField?.text)!)!
-      case 2:
-        Defaults[.hotToColdRatio] = (Double((activeTextField?.text)!)! / Double(Defaults[.coldDuration]))
-      case 3:
-        Defaults[.hotToColdRatio] = (Double(Defaults[.hotDuration]) / Double((activeTextField?.text)!)!)
-      default:
-        break
-      }
-    }
     self.view.endEditing(true)
     return true
   }

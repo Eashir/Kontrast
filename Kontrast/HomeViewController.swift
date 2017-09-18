@@ -24,10 +24,8 @@ class HomeViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     do {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.mixWithOthers)
-      
     } catch { }
     
     setupViewHierarchy()
@@ -44,7 +42,7 @@ class HomeViewController: UIViewController {
     NotificationCenter.default.removeObserver(self)
   }
   
-  //MARK: - Background Task Management
+  // MARK: - Background Task Management
   
   func registerBackgroundTask() {
     backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
@@ -65,60 +63,7 @@ class HomeViewController: UIViewController {
     }
   }
   
-  //MARK: - Helpers
-  
-  func roundOutViews() {
-    startButton.layoutIfNeeded()
-    startButton.roundButton()
-  }
-  
-  func playSound() {
-    guard let sound = NSDataAsset(name: "Ding") else {
-      print("asset not found")
-      return
-    }
-    do {
-      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-      try AVAudioSession.sharedInstance().setActive(true)
-      
-      player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeMPEGLayer3)
-      
-      player!.play()
-    } catch let error as NSError {
-      print("error: \(error.localizedDescription)")
-    }
-  }
-  
-  //MARK: - Actions
-  
-  func startOrStopTapped(_ sender: UIButton) {
-    print("ANIMATE BUTTON TAPPED, CUMULATED ANGLE: \(Double(rotationGestureRecognizer.cumulatedAngle))")
-    self.circularProgress.set(colors: UIColor.white, UIColor.orange)
-    currentCycle = 0
-    linesImageView.isHidden = true
-    
-    if sender.titleLabel?.text == "START" {
-      startButton.setTitle("STOP", for: .normal)
-      registerBackgroundTask()
-      animate()
-      if backgroundTask != UIBackgroundTaskInvalid {
-        endBackgroundTask()
-      }
-    } else {
-      circularProgress.stopAnimation()
-      startButton.setTitle("START", for: .normal)
-    }
-  }
-  
-  func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-    let settingsVC = SettingsViewController()
-    let transition = CATransition()
-    transition.duration = 0.5
-    transition.type = kCAGravityCenter
-    transition.subtype = kCATransitionFromRight
-    self.navigationController?.view.window?.layer.add(transition, forKey: kCATransition)
-    self.navigationController?.pushViewController(settingsVC, animated: false)
-  }
+  // MARK: - Methods
   
   func animate() {
     guard currentCycle != Int(Defaults[.numberOfCycles]) else {
@@ -126,7 +71,7 @@ class HomeViewController: UIViewController {
       return
     }
     
-    //Adding 2 to durations to allow time to switch water temp
+    // Adding 2 to durations to allow time to switch water temp
     self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.hotDuration] + 2)) { completed in
       guard completed != false else {
         print("Hot Progess was interrupted")
@@ -157,7 +102,60 @@ class HomeViewController: UIViewController {
     settingsActionView.addGestureRecognizer(tapGestureRecognizer)
   }
   
-  //MARK: - Setup
+  func playSound() {
+    guard let sound = NSDataAsset(name: "Ding") else {
+      print("asset not found")
+      return
+    }
+    do {
+      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+      try AVAudioSession.sharedInstance().setActive(true)
+      
+      player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeMPEGLayer3)
+      player!.play()
+    } catch let error as NSError {
+      print("error: \(error.localizedDescription)")
+    }
+  }
+  
+  func roundOutViews() {
+    startButton.layoutIfNeeded()
+    startButton.roundButton()
+  }
+  
+  
+  // MARK: - Actions
+  
+  func startOrStopTapped(_ sender: UIButton) {
+    print("ANIMATE BUTTON TAPPED, CUMULATED ANGLE: \(Double(rotationGestureRecognizer.cumulatedAngle))")
+    self.circularProgress.set(colors: UIColor.white, UIColor.orange)
+    currentCycle = 0
+    linesImageView.isHidden = true
+    
+    if sender.titleLabel?.text == "START" {
+      startButton.setTitle("STOP", for: .normal)
+      registerBackgroundTask()
+      animate()
+      if backgroundTask != UIBackgroundTaskInvalid {
+        endBackgroundTask()
+      }
+    } else {
+      circularProgress.stopAnimation()
+      startButton.setTitle("START", for: .normal)
+    }
+  }
+  
+  func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+    let settingsVC = SettingsViewController()
+    let transition = CATransition()
+    transition.duration = 0.5
+    transition.type = kCAGravityCenter
+    transition.subtype = kCATransitionFromRight
+    self.navigationController?.view.window?.layer.add(transition, forKey: kCATransition)
+    self.navigationController?.pushViewController(settingsVC, animated: false)
+  }
+  
+  // MARK: - Setup
   
   func setupViewHierarchy() {
     view.addSubview(radialBackgroundView)
@@ -171,23 +169,12 @@ class HomeViewController: UIViewController {
   }
   
   func configureConstraints() {
-    radialBackgroundView.snp.makeConstraints { (make) in
-      make.leading.top.trailing.equalToSuperview()
-      make.height.equalToSuperview().multipliedBy(2)
-    }
     
     circularProgress.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalToSuperview().offset(Layout.screenHeight * 0.15)
       make.height.equalToSuperview().multipliedBy(0.42)
       make.width.equalTo(circularProgress.snp.height)
-    }
-    
-    linesImageView.snp.makeConstraints { (make) in
-      make.height.equalTo(circularProgress.snp.height).multipliedBy(0.8)
-      make.width.equalTo(circularProgress.snp.width).multipliedBy(0.8)
-      make.centerX.equalTo(circularProgress.snp.centerX)
-      make.centerY.equalTo(circularProgress.snp.centerY)
     }
     
     dialImageView.snp.makeConstraints { (make) in
@@ -197,16 +184,21 @@ class HomeViewController: UIViewController {
       make.centerY.equalTo(circularProgress.snp.centerY)
     }
     
+    linesImageView.snp.makeConstraints { (make) in
+      make.height.equalTo(circularProgress.snp.height).multipliedBy(0.8)
+      make.width.equalTo(circularProgress.snp.width).multipliedBy(0.8)
+      make.centerX.equalTo(circularProgress.snp.centerX)
+      make.centerY.equalTo(circularProgress.snp.centerY)
+    }
+    
+    radialBackgroundView.snp.makeConstraints { (make) in
+      make.leading.top.trailing.equalToSuperview()
+      make.height.equalToSuperview().multipliedBy(2)
+    }
+    
     timeLabel.snp.makeConstraints { (make) in
       make.centerX.equalTo(dialImageView.snp.centerX)
       make.centerY.equalTo(dialImageView.snp.centerY)
-    }
-    
-    startButton.snp.makeConstraints { (make) in
-      make.centerX.equalToSuperview()
-      make.bottom.equalToSuperview().offset(-Layout.screenHeight * 0.2)
-      make.width.equalTo(100)
-      make.height.equalTo(50)
     }
     
     settingsActionView.snp.makeConstraints { (make) in
@@ -220,10 +212,17 @@ class HomeViewController: UIViewController {
       make.trailing.equalToSuperview().offset(-Layout.mediumOffset)
       make.bottom.equalToSuperview().offset(-Layout.mediumOffset)
     }
+    
+    startButton.snp.makeConstraints { (make) in
+      make.centerX.equalToSuperview()
+      make.bottom.equalToSuperview().offset(-Layout.screenHeight * 0.2)
+      make.width.equalTo(100)
+      make.height.equalTo(50)
+    }
   }
   
   func configureGestureRecognizers() {
-    //Calculate center and radius of the control
+    // Calculate center and radius of the control
     let HMidPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
     let HOutRadius = circularProgress.frame.size.width / 2
     let cumulatedAngle = CGFloat(Defaults[.hotDuration] * 6)
@@ -232,23 +231,8 @@ class HomeViewController: UIViewController {
     circularProgress.addGestureRecognizer(rotationGestureRecognizer)
   }
   
-  //MARK: - Lazy Vars
+  // MARK: - Lazy Vars
   
-  lazy var radialBackgroundView: UIView = {
-    let view = RadialGradientView()
-    view.translatesAutoresizingMaskIntoConstraints = false
-    return view
-  }()
-  
-  lazy var timeLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = ColorPalette.secondary
-    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.largeSize)
-    label.text = "\(Int(Defaults[.hotDuration]))"
-    return label
-  }()
-  
-  //Dial
   lazy var circularProgress: KDCircularProgress = {
     let progress = KDCircularProgress()
     progress.clockwise = true
@@ -283,6 +267,12 @@ class HomeViewController: UIViewController {
     return imageView
   }()
   
+  lazy var radialBackgroundView: UIView = {
+    let view = RadialGradientView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
   lazy var startButton: UIButton = {
     let button = UIButton()
     button.addTarget(self, action: #selector(startOrStopTapped(_:)), for: .touchUpInside)
@@ -315,4 +305,74 @@ class HomeViewController: UIViewController {
     imageView.translatesAutoresizingMaskIntoConstraints = false
     return imageView
   }()
+  
+  lazy var timeLabel: UILabel = {
+    let label = UILabel()
+    label.textColor = ColorPalette.secondary
+    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.largeSize)
+    label.text = "\(Int(Defaults[.hotDuration]))"
+    return label
+  }()
+  
+}
+
+// MARK: - GestureRecognizer Delegate
+
+extension HomeViewController: UIGestureRecognizerDelegate {
+  
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    if rotationGestureRecognizer.state == .failed {
+      return
+    }
+    
+    let midPoint = CGPoint(x: circularProgress.frame.origin.x + circularProgress.frame.size.width / 2, y: circularProgress.frame.origin.y + circularProgress.frame.size.height / 2)
+    let outRadius = circularProgress.frame.size.width / 2
+    let nowPoint: CGPoint? = touches.first?.location(in: view)
+    let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
+    // Make sure the new point is within the area
+    let distance: CGFloat = rotationGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
+    
+    // Make sure that the rotation gesture is on the circular progress
+    guard rotationGestureRecognizer.innerRadius <= distance && distance <= outRadius else {
+      rotationGestureRecognizer.state = .failed
+      return
+    }
+    
+    //Calculate angle between two touch points
+    var angle: CGFloat = rotationGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
+    if angle > 180 {
+      angle -= 360
+    }
+    else if angle < -180 {
+      angle += 360
+    }
+    
+    let duration = Int((rotationGestureRecognizer.cumulatedAngle + angle)/6)
+    
+    guard duration >= 0 else {
+      return
+    }
+    
+    // Rotation animation
+    let rotationAngle = Int(rotationGestureRecognizer.cumulatedAngle)
+    let totalRotationAngle = Int(rotationGestureRecognizer.cumulatedAngle) + Int(angle)
+    
+    if totalRotationAngle > rotationAngle {
+      print("CUMULATED ANGLE: \(rotationAngle), TOTAL:  \(totalRotationAngle) ")
+      linesImageView.transform = linesImageView.transform.rotated(by: -1200.0)
+    } else if totalRotationAngle < rotationAngle {
+      linesImageView.transform = linesImageView.transform.rotated(by: 1200.0)
+    }
+    
+    rotationGestureRecognizer.cumulatedAngle += angle
+    
+    let totalDuration = Double((rotationGestureRecognizer.cumulatedAngle)/6)
+    
+    Defaults[.hotDuration] = Int(totalDuration)
+    Defaults[.coldDuration] = Int(totalDuration) / Int(Defaults[.hotToColdRatio])
+    
+    timeLabel.text = "\(Defaults[.hotDuration])"
+    print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
+  }
+  
 }

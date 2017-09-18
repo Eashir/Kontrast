@@ -11,7 +11,7 @@ import Foundation
 
 extension UserDefaults {
   subscript(key: DefaultsKey<Int>) -> Int {
-    get { return unarchive(key) ?? 90}
+    get { return unarchive(key) ?? 0}
     set { archive(key, newValue) }
   }
   
