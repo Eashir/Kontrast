@@ -12,6 +12,7 @@ import SnapKit
 import Hero
 import SwiftyUserDefaults
 import KDCircularProgress
+import Lottie
 import QuartzCore
 
 class HomeViewController: UIViewController {

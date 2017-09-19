@@ -34,6 +34,7 @@ class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
     let d: CGFloat = endLineB.y - beginLineB.y
     let atanA: CGFloat = atan2(a, b)
     let atanB: CGFloat = atan2(c, d)
+    
     // Convert radians to degrees
     return (atanA - atanB) * 180 / .pi
   }

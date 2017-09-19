@@ -10,6 +10,7 @@ target 'Kontrast' do
   pod 'Alamofire'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   pod "Hero"
+  pod "lottie-ios"
   pod 'KDCircularProgress'
   pod 'SwiftyUserDefaults'
   pod 'SnapKit'
