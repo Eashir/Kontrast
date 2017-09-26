@@ -19,6 +19,11 @@ extension UserDefaults {
     get { return unarchive(key) ?? 3.0}
     set { archive(key, newValue) }
   }
+  
+  subscript(key: DefaultsKey<Bool>) -> Bool {
+    get { return unarchive(key) ?? false}
+    set { archive(key, newValue) }
+  }
 }
 
 extension DefaultsKeys {
@@ -26,5 +31,6 @@ extension DefaultsKeys {
   static let coldDuration = DefaultsKey<Int>("coldDuration")
   static let numberOfCycles = DefaultsKey<Double>("numberofCycles")
   static let hotToColdRatio = DefaultsKey<Double>("hotToColdRatio")
+  static let didSeeWalkthrough = DefaultsKey<Bool>("didSeeWalkthrough")
 }
 
