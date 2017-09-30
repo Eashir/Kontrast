@@ -36,8 +36,10 @@ struct Layout {
   
 }
 
-struct FontSize {
-  static var standardSize: CGFloat = 14
+struct Font {
+  static var lightWeight: String = "HelveticaNeue-Light"
+  
+  static var standardSize: CGFloat = 16
   static var mediumSize: CGFloat = 20
   static var largeSize: CGFloat = 24
 }

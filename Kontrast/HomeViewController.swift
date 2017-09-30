@@ -15,7 +15,11 @@ import KDCircularProgress
 import Lottie
 import QuartzCore
 
-class HomeViewController: UIViewController {
+protocol AudioPlayer {
+  func playSound()
+}
+
+class HomeViewController: UIViewController, AudioPlayer {
   
   var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
   var player: AVAudioPlayer?
@@ -205,11 +209,11 @@ class HomeViewController: UIViewController {
     settingsActionView.snp.makeConstraints { (make) in
       make.centerX.equalTo(settingsImageView.snp.centerX)
       make.centerY.equalTo(settingsImageView.snp.centerY)
-      make.size.equalTo(100)
+      make.size.equalTo(Layout.screenWidth / 3.75)
     }
     
     settingsImageView.snp.makeConstraints { (make) in
-      make.size.equalTo(30)
+      make.size.equalTo(Layout.screenWidth / 12.5)
       make.trailing.equalToSuperview().offset(-Layout.mediumOffset)
       make.bottom.equalToSuperview().offset(-Layout.mediumOffset)
     }
@@ -284,7 +288,7 @@ class HomeViewController: UIViewController {
     button.setTitleColor(ColorPalette.secondary, for: .normal)
     button.setTitle("START", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
-    button.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 16)
+    button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
     button.titleLabel?.minimumScaleFactor = 0.1
     button.titleLabel?.textColor = .white
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -310,14 +314,14 @@ class HomeViewController: UIViewController {
   lazy var timeLabel: UILabel = {
     let label = UILabel()
     label.textColor = ColorPalette.secondary
-    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.largeSize)
+    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
     label.text = "\(Int(Defaults[.hotDuration]))"
     return label
   }()
   
 }
 
-// MARK: - GestureRecognizer Delegate
+// MARK: - Gesture Recognizer Delegate
 
 extension HomeViewController: UIGestureRecognizerDelegate {
   
@@ -330,6 +334,7 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     let outRadius = circularProgress.frame.size.width / 2
     let nowPoint: CGPoint? = touches.first?.location(in: view)
     let prevPoint: CGPoint? = touches.first?.previousLocation(in: view)
+    
     // Make sure the new point is within the area
     let distance: CGFloat = rotationGestureRecognizer.distanceBetweenPoints(point1: midPoint, point2: nowPoint!)
     

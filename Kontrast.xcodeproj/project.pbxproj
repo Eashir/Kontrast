@@ -19,15 +19,14 @@
 		CC08F25D1F6B9A8B00C8A306 /* SwiftyDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */; };
 		CC0D9F9B1F6680E100858DDF /* RadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */; };
 		CC14ACD01F71CD8B00145D5F /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC14ACCF1F71CD8B00145D5F /* WalkthroughViewController.swift */; };
+		CC1808EF1F7C45A400B89642 /* PartOne.json in Resources */ = {isa = PBXBuildFile; fileRef = CC1808EC1F7C45A400B89642 /* PartOne.json */; };
+		CC1808F41F7C661E00B89642 /* PartThree.json in Resources */ = {isa = PBXBuildFile; fileRef = CC1808F21F7C661E00B89642 /* PartThree.json */; };
+		CC1808F51F7C661E00B89642 /* PartTwo.json in Resources */ = {isa = PBXBuildFile; fileRef = CC1808F31F7C661E00B89642 /* PartTwo.json */; };
 		CC1ACD491F6C5472009F145A /* KontrastNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1ACD481F6C5472009F145A /* KontrastNavigationController.swift */; };
 		CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */; };
-		CC2957731F79B00100722880 /* PartThree.json in Resources */ = {isa = PBXBuildFile; fileRef = CC2957721F79B00100722880 /* PartThree.json */; };
 		CC33394E1F6BB78D00BA9A9C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */; };
-		CC64B36D1F74A0FF00D748B2 /* PartOne.json in Resources */ = {isa = PBXBuildFile; fileRef = CC64B36C1F74A0FF00D748B2 /* PartOne.json */; };
-		CC64B3711F74A32400D748B2 /* water_loader.json in Resources */ = {isa = PBXBuildFile; fileRef = CC64B3701F74A32400D748B2 /* water_loader.json */; };
 		CC6C23C21F6A17B600079133 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6C23C11F6A17B600079133 /* SettingsViewController.swift */; };
 		CC931E9D1F6A7EF50096FF28 /* App Logo K.png in Resources */ = {isa = PBXBuildFile; fileRef = CC931E9C1F6A7EF50096FF28 /* App Logo K.png */; };
-		CCAD4C571F7882E900FD0792 /* PartTwo.json in Resources */ = {isa = PBXBuildFile; fileRef = CCAD4C561F7882E900FD0792 /* PartTwo.json */; };
 		DB5731CA07EB36A72B9EDF25 /* Pods_Kontrast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C4240B8D96F08C16417DFB /* Pods_Kontrast.framework */; };
 		E13D3E08BA9434A750466DF5 /* Pods_KontrastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50257CB964149DACBB68B6 /* Pods_KontrastUITests.framework */; };
 /* End PBXBuildFile section */
@@ -74,16 +73,15 @@
 		CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyDefaults.swift; sourceTree = "<group>"; };
 		CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradient.swift; sourceTree = "<group>"; };
 		CC14ACCF1F71CD8B00145D5F /* WalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
+		CC1808EC1F7C45A400B89642 /* PartOne.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartOne.json; sourceTree = "<group>"; };
+		CC1808F21F7C661E00B89642 /* PartThree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartThree.json; sourceTree = "<group>"; };
+		CC1808F31F7C661E00B89642 /* PartTwo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartTwo.json; sourceTree = "<group>"; };
 		CC1ACD481F6C5472009F145A /* KontrastNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KontrastNavigationController.swift; sourceTree = "<group>"; };
 		CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFingerGestureRecognizer.swift; sourceTree = "<group>"; };
-		CC2957721F79B00100722880 /* PartThree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartThree.json; sourceTree = "<group>"; };
 		CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		CC64B36C1F74A0FF00D748B2 /* PartOne.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartOne.json; sourceTree = "<group>"; };
-		CC64B3701F74A32400D748B2 /* water_loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = water_loader.json; sourceTree = "<group>"; };
 		CC6C23C11F6A17B600079133 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CC7FCB831F70A47900050526 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		CC931E9C1F6A7EF50096FF28 /* App Logo K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Logo K.png"; sourceTree = "<group>"; };
-		CCAD4C561F7882E900FD0792 /* PartTwo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PartTwo.json; sourceTree = "<group>"; };
 		D7094E44EA270DEC7B549959 /* Pods-KontrastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastUITests/Pods-KontrastUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE8CEBC68A0983862FE7219A /* Pods-KontrastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastTests/Pods-KontrastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,13 +217,12 @@
 			children = (
 				CC066C241F4E0BF4005E0D2A /* Assets.xcassets */,
 				CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */,
-				CC64B36C1F74A0FF00D748B2 /* PartOne.json */,
-				CCAD4C561F7882E900FD0792 /* PartTwo.json */,
-				CC2957721F79B00100722880 /* PartThree.json */,
-				CC64B3701F74A32400D748B2 /* water_loader.json */,
 				CC7FCB831F70A47900050526 /* Header.h */,
 				CC066C261F4E0BF4005E0D2A /* LaunchScreen.storyboard */,
 				CC066C291F4E0BF4005E0D2A /* Info.plist */,
+				CC1808EC1F7C45A400B89642 /* PartOne.json */,
+				CC1808F31F7C661E00B89642 /* PartTwo.json */,
+				CC1808F21F7C661E00B89642 /* PartThree.json */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -355,13 +352,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC64B3711F74A32400D748B2 /* water_loader.json in Resources */,
+				CC1808F41F7C661E00B89642 /* PartThree.json in Resources */,
 				CC931E9D1F6A7EF50096FF28 /* App Logo K.png in Resources */,
-				CC64B36D1F74A0FF00D748B2 /* PartOne.json in Resources */,
-				CCAD4C571F7882E900FD0792 /* PartTwo.json in Resources */,
+				CC1808EF1F7C45A400B89642 /* PartOne.json in Resources */,
+				CC1808F51F7C661E00B89642 /* PartTwo.json in Resources */,
 				CC066C281F4E0BF4005E0D2A /* LaunchScreen.storyboard in Resources */,
 				CC066C251F4E0BF4005E0D2A /* Assets.xcassets in Resources */,
-				CC2957731F79B00100722880 /* PartThree.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

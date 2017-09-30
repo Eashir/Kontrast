@@ -81,7 +81,7 @@ class SettingsViewController: UIViewController {
     cycleTextField.snp.makeConstraints { (make) in
       make.top.trailing.equalTo(cycleSettingsView)
       make.height.equalTo(30)
-      make.width.equalTo(30)
+      make.width.equalTo(40)
     }
     
     durationSettingsView.snp.makeConstraints { (make) in
@@ -133,7 +133,7 @@ class SettingsViewController: UIViewController {
   
   lazy var settingsLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.largeSize)
+    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
     label.textColor = ColorPalette.secondary
     label.text = "SETTINGS"
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -159,7 +159,7 @@ class SettingsViewController: UIViewController {
   
   lazy var backLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.largeSize)
+    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
     label.textColor = ColorPalette.secondary
     label.text = "x"
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -185,7 +185,7 @@ class SettingsViewController: UIViewController {
     field.autocorrectionType = .yes
     field.backgroundColor = ColorPalette.secondary
     field.borderStyle = UITextBorderStyle.none
-    field.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.mediumSize)
+    field.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
     field.keyboardType = .numberPad
     field.layer.cornerRadius = 9
     field.returnKeyType = .done
@@ -198,7 +198,7 @@ class SettingsViewController: UIViewController {
   
   lazy var hotLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.standardSize)
+    label.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
     label.textColor = ColorPalette.secondary
     label.text = "Hot"
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -210,7 +210,7 @@ class SettingsViewController: UIViewController {
     field.autocorrectionType = .yes
     field.backgroundColor = ColorPalette.secondary
     field.borderStyle = UITextBorderStyle.none
-    field.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.mediumSize)
+    field.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
     field.keyboardType = .numberPad
     field.layer.cornerRadius = 9
     field.returnKeyType = .done
@@ -223,7 +223,7 @@ class SettingsViewController: UIViewController {
   
   lazy var coldLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.standardSize)
+    label.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
     label.textColor = ColorPalette.secondary
     label.text = "Cold"
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -235,7 +235,7 @@ class SettingsViewController: UIViewController {
     field.autocorrectionType = .yes
     field.backgroundColor = ColorPalette.secondary
     field.borderStyle = UITextBorderStyle.none
-    field.font = UIFont(name: "HelveticaNeue-Light", size: FontSize.mediumSize)
+    field.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
     field.keyboardType = .numberPad
     field.layer.cornerRadius = 9
     field.returnKeyType = .done
@@ -280,13 +280,13 @@ extension SettingsViewController: UITextFieldDelegate {
             return
           }
           Defaults[.hotDuration] = Int((activeTextField?.text)!)!
-          Defaults[.hotToColdRatio] = (Double((activeTextField?.text)!)! / Double(Defaults[.coldDuration]))
+          Defaults[.hotToColdRatio] = (CGFloat(Double((activeTextField?.text)!)! / Double(Defaults[.coldDuration])))
           
         case 3:
           guard activeTextFieldInput <= (Double(Defaults[.hotDuration])) && activeTextFieldInput < 1200.0 else {
             return
           }
-          Defaults[.hotToColdRatio] = (Double(Defaults[.hotDuration]) / activeTextFieldInput)
+          Defaults[.hotToColdRatio] = (CGFloat(Double(Defaults[.hotDuration]) / activeTextFieldInput))
         default:
           break
         }
