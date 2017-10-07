@@ -17,7 +17,7 @@ class WalkthroughViewController: UIViewController {
   var partTwoAnimationView = LOTAnimationView(name: "PartTwo")
   var partThreeAnimationView = LOTAnimationView(name: "PartThree")
 
-  var walkthroughStringArray = ["WELCOME! \n\nA contrast shower is an awesome way \nto start your day","\n\nSet the timer to 90 seconds by rotating it", "\n\nHit START right before you're ready to step into the shower", "Make sure the waters VERY hot (but not burning). As soon as the timer runs out, you'll hear a sound", "Thats your queue to switch to icy cold water!", "\n\n Continue to keep alternating at every ding as this will repeat 3 more times by default \n\n\n\n Benefits include:\n\n - Improved Breathing \n - Heightened Focus \n - Enhanced Blood Circulation"]
+  var walkthroughStringArray = ["WELCOME! \n\nA contrast shower is an awesome way \nto start your day","\n\nSet the timer by rotating it, and then hit start right before you're ready to step into the shower. \n\n Recommended duration is 90 seconds!", "Make sure the waters VERY hot (but not burning). As soon as the timer runs out, you'll hear a sound", "Thats your queue to switch to icy cold water!", "\n\n Continue to keep alternating at every ding as this will repeat 3 more times by default \n\n\n\n Benefits include:\n\n - Improved Breathing \n - Heightened Focus \n - Enhanced Blood Circulation"]
   
   var delegate: AudioPlayer?
   
@@ -43,8 +43,8 @@ class WalkthroughViewController: UIViewController {
   // MARK: - Setup
   
   func setupScrollView() {
-    scrollView.contentSize = CGSize(width: self.view.frame.size.width * 6, height: view.frame.size.height)
-    for i in 0...5  {
+    scrollView.contentSize = CGSize(width: self.view.frame.size.width * 5, height: view.frame.size.height)
+    for i in 0...4  {
       let textView = UITextView(frame: CGRect(x: scrollView.center.x + CGFloat(i) * self.view.frame.size.width, y: ((self.view.frame.size.height) * (0.1)), width: self.view.frame.size.width, height: 400))
       textView.backgroundColor = .clear
       textView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(Layout.mediumOffset), bottom: 0, right: CGFloat(Layout.mediumOffset))
@@ -65,35 +65,19 @@ class WalkthroughViewController: UIViewController {
     view.addSubview(pageController)
     
     scrollView.addSubview(partOneAnimationView)
-    scrollView.addSubview(linesImageView)
-    scrollView.addSubview(dialImageView)
-    scrollView.addSubview(startButton)
     scrollView.addSubview(partTwoAnimationView)
-    scrollView.addSubview(arrowImageView)
-    scrollView.addSubview(timeLabel)
     scrollView.addSubview(partThreeAnimationView)
+    
     partTwoAnimationView.addSubview(hotImageView)
     partThreeAnimationView.addSubview(coldImageView)
   }
   
   func configureConstraints() {
     
-    arrowImageView.snp.makeConstraints { (make) in
-      make.size.equalTo(Layout.screenWidth / 12.5)
-      make.leading.equalTo(linesImageView.snp.trailing)
-      make.centerY.equalTo(linesImageView)
-    }
-    
     coldImageView.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalTo(partThreeAnimationView.snp.top).offset(60)
       make.size.equalTo(Layout.screenWidth / 7.5)
-    }
-    
-    dialImageView.snp.makeConstraints { (make) in
-      make.height.equalTo(linesImageView.snp.height).multipliedBy(0.9)
-      make.width.equalTo(dialImageView.snp.height)
-      make.centerY.centerX.equalTo(linesImageView)
     }
     
     diveInButton.snp.makeConstraints { (make) in
@@ -107,13 +91,6 @@ class WalkthroughViewController: UIViewController {
       make.centerX.equalToSuperview()
       make.top.equalTo(partTwoAnimationView.snp.top).offset(60)
       make.size.equalTo(Layout.screenWidth / 7.5)
-    }
-    
-    linesImageView.snp.makeConstraints { (make) in
-      make.height.equalTo(self.view.snp.height).multipliedBy(0.3)
-      make.width.equalTo(linesImageView.snp.height)
-      make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width)
-      make.centerY.equalTo(self.scrollView)
     }
     
     pageController.snp.makeConstraints { (make) in
@@ -131,14 +108,14 @@ class WalkthroughViewController: UIViewController {
     })
     
     partTwoAnimationView.snp.makeConstraints({ (make) in
-      make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 3)
+      make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 2)
       make.centerY.equalTo(self.scrollView)
       make.height.equalTo(Layout.screenHeight / 1.66)
       make.width.equalTo(Layout.screenWidth / 1.25)
     })
     
     partThreeAnimationView.snp.makeConstraints({ (make) in
-      make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 4)
+      make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 3)
       make.centerY.equalTo(self.scrollView)
       make.height.equalTo(Layout.screenHeight / 1.66)
       make.width.equalTo(Layout.screenWidth / 1.25)
@@ -151,18 +128,6 @@ class WalkthroughViewController: UIViewController {
     
     scrollView.snp.makeConstraints { (make) in
       make.bottom.leading.trailing.top.equalToSuperview()
-    }
-    
-    startButton.snp.makeConstraints { (make) in
-      make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 2)
-      make.centerY.equalTo(self.scrollView)
-      make.width.equalTo(100)
-      make.height.equalTo(50)
-    }
-    
-    timeLabel.snp.makeConstraints { (make) in
-      make.centerX.equalTo(dialImageView.snp.centerX)
-      make.centerY.equalTo(dialImageView.snp.centerY)
     }
     
     walkthroughLabel.snp.makeConstraints { (make) in
@@ -201,43 +166,14 @@ class WalkthroughViewController: UIViewController {
   
   func roundOutViews() {
     diveInButton.layoutIfNeeded()
-    startButton.layoutIfNeeded()
     diveInButton.roundButton()
-    startButton.roundButton()
   }
   
   // MARK: - Lazy Vars
   
-  lazy var arrowImageView: UIImageView = {
-    let imageView = UIImageView()
-    let image = UIImage(named: "Arrow")
-    imageView.image = image
-    imageView.contentMode = .scaleAspectFit
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    return imageView
-  }()
-  
   lazy var coldImageView: UIImageView = {
     let imageView = UIImageView()
     let image = UIImage(named: "Cold")
-    imageView.image = image
-    imageView.contentMode = .scaleAspectFit
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    return imageView
-  }()
-  
-  lazy var dialImageView: UIImageView = {
-    let imageView = UIImageView()
-    let image = UIImage(named: "dial")
-    imageView.image = image
-    imageView.contentMode = .scaleAspectFit
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    return imageView
-  }()
-  
-  lazy var linesImageView: UIImageView = {
-    let imageView = UIImageView()
-    let image = UIImage(named: "lines")
     imageView.image = image
     imageView.contentMode = .scaleAspectFit
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -276,7 +212,7 @@ class WalkthroughViewController: UIViewController {
     pageControl.translatesAutoresizingMaskIntoConstraints = false
     pageControl.pageIndicatorTintColor = .lightGray
     pageControl.currentPageIndicatorTintColor = .white
-    pageControl.numberOfPages = 6
+    pageControl.numberOfPages = 5
     return pageControl
   }()
   
@@ -293,30 +229,6 @@ class WalkthroughViewController: UIViewController {
     view.isPagingEnabled = true
     view.showsHorizontalScrollIndicator = false
     return view
-  }()
-  
-  lazy var startButton: UIButton = {
-    let button = UIButton()
-    button.backgroundColor = ColorPalette.primaryLight
-    button.contentMode = .center
-    button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.secondary.cgColor
-    button.setTitleColor(ColorPalette.secondary, for: .normal)
-    button.setTitle("START", for: .normal)
-    button.titleLabel?.adjustsFontSizeToFitWidth = true
-    button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
-    button.titleLabel?.minimumScaleFactor = 0.1
-    button.titleLabel?.textColor = .white
-    button.translatesAutoresizingMaskIntoConstraints = false
-    return button
-  }()
-  
-  lazy var timeLabel: UILabel = {
-    let label = UILabel()
-    label.textColor = ColorPalette.secondary
-    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
-    label.text = "90"
-    return label
   }()
   
   lazy var walkthroughLabel: UILabel = {
@@ -346,13 +258,11 @@ extension WalkthroughViewController: UIScrollViewDelegate {
     case 1:
       break
     case 2:
-      break
-    case 3:
       partTwoAnimationView.play()
-    case 4:
+    case 3:
       self.delegate?.playSound()
       partThreeAnimationView.play()
-    case 5:
+    case 4:
       diveInButton.alpha = 0
       diveInButton.isHidden = false
       UIView.animate(withDuration: 1.0) {
