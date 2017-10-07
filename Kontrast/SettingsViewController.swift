@@ -68,12 +68,12 @@ class SettingsViewController: UIViewController {
     
     settingsLabel.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalToSuperview().offset(Layout.mediumOffset + Int(Layout.statusBarHeight))
+      make.top.equalToSuperview().offset(Layout.largeOffset + Int(Layout.statusBarHeight))
     }
     
     cycleSettingsView.snp.makeConstraints { (make) in
       make.leading.equalToSuperview().offset(Layout.largeOffset)
-      make.top.equalTo(settingsLabel.snp.bottom).offset(Layout.largeOffset)
+      make.top.equalTo(settingsLabel.snp.bottom).offset(Layout.largeOffset + Int(Layout.statusBarHeight))
       make.leading.equalToSuperview().offset(Layout.largeOffset)
       make.trailing.equalToSuperview().offset(-Layout.largeOffset)
     }
@@ -155,7 +155,6 @@ class SettingsViewController: UIViewController {
     settingsView.translatesAutoresizingMaskIntoConstraints = false
     return settingsView
   }()
-  
   
   lazy var backLabel: UILabel = {
     let label = UILabel()
@@ -267,8 +266,8 @@ extension SettingsViewController: UITextFieldDelegate {
     
     if doesInputStartWithZero(str: (activeTextField?.text!)!) {
       if let validTag = activeTextField?.tag {
-        
         switch validTag {
+          
         case 1:
           guard activeTextFieldInput < 20 else {
             return
@@ -291,9 +290,7 @@ extension SettingsViewController: UITextFieldDelegate {
           break
         }
       }
-    }
-      
-    else {
+    } else {
       activeTextFieldInput = 1.0
       return
     }
