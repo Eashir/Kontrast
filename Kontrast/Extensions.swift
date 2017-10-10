@@ -22,11 +22,6 @@ extension UIImageView {
     self.layer.cornerRadius = self.frame.width/2
     self.clipsToBounds = true
   }
-  
-  func borderImageView() {
-    self.layer.borderWidth = 1.5
-//    self.layer.borderColor = AppColors.primary.cgColor
-  }
 }
 
 extension UIView {

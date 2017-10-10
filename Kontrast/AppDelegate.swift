@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 //    else {
       self.window = UIWindow(frame: UIScreen.main.bounds)
-      let rootVC = WalkthroughViewController()
+      let rootVC = HomeViewController()
       let navigationController = KontrastNavigationController(rootViewController: rootVC)
       navigationController.navigationBar.isTranslucent = false
       self.window?.rootViewController = navigationController
