@@ -128,7 +128,6 @@ class HomeViewController: UIViewController, AudioPlayer {
     startButton.roundButton()
   }
   
-  
   // MARK: - Actions
   
   func startOrStopTapped(_ sender: UIButton) {
