@@ -137,6 +137,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CC0643981F8EC609002749B2 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				CC1808EC1F7C45A400B89642 /* PartOne.json */,
+				CC1808F31F7C661E00B89642 /* PartTwo.json */,
+				CC1808F21F7C661E00B89642 /* PartThree.json */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
 		CC066C111F4E0BF4005E0D2A = {
 			isa = PBXGroup;
 			children = (
@@ -165,10 +175,6 @@
 				CC6C23C31F6A17BF00079133 /* Controllers */,
 				CC08F2571F6B2A8900C8A306 /* Views */,
 				CC7FCB811F709E6B00050526 /* Support */,
-				CC066C4B1F4E0C2B005E0D2A /* Constants.swift */,
-				CC066C4D1F4E0C30005E0D2A /* Extensions.swift */,
-				CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */,
-				CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */,
 			);
 			path = Kontrast;
 			sourceTree = "<group>";
@@ -196,6 +202,7 @@
 			children = (
 				CC0D9F9A1F6680E100858DDF /* RadialGradient.swift */,
 				CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */,
+				CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -220,9 +227,10 @@
 				CCB1714B1F884A2A00439983 /* App Logo K.png */,
 				CC066C261F4E0BF4005E0D2A /* LaunchScreen.storyboard */,
 				CC066C291F4E0BF4005E0D2A /* Info.plist */,
-				CC1808EC1F7C45A400B89642 /* PartOne.json */,
-				CC1808F31F7C661E00B89642 /* PartTwo.json */,
-				CC1808F21F7C661E00B89642 /* PartThree.json */,
+				CC066C4B1F4E0C2B005E0D2A /* Constants.swift */,
+				CC066C4D1F4E0C30005E0D2A /* Extensions.swift */,
+				CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */,
+				CC0643981F8EC609002749B2 /* JSON */,
 			);
 			name = Support;
 			sourceTree = "<group>";
