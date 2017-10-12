@@ -17,7 +17,7 @@ class WalkthroughViewController: UIViewController {
   var partTwoAnimationView = LOTAnimationView(name: "PartTwo")
   var partThreeAnimationView = LOTAnimationView(name: "PartThree")
 
-  var walkthroughStringArray = ["WELCOME! \n\nA contrast shower is an awesome \nway to start your day","\n\nSet the timer by rotating it, and then hit start right before you're ready to step into the shower. \n\n Recommended duration is 90 seconds!", "Make sure the waters VERY hot (but not burning). As soon as the timer runs out, you'll hear a sound", "Thats your queue to switch to icy cold water!", "\n\n Continue to keep alternating at every ding as this will repeat 3 more times by default \n\n\n\n Benefits include:\n\n - Improved Breathing \n - Heightened Focus \n - Enhanced Blood Circulation"]
+  var walkthroughStringArray = ["WELCOME! \n\nA contrast shower is an awesome \nway to start your day","\n\nSet the timer by rotating it, and then hit start right before you're ready to step into the shower. \n\n\n\n\n\n\n\n Recommended duration is 90 seconds!", "Make sure the waters VERY hot (but not burning). As soon as the timer runs out, you'll hear a sound", "Thats your queue to switch to icy cold water!", "\n\n Continue to keep alternating at every ding as this will repeat 3 more times by default \n\n\n\n Benefits include:\n\n - Improved Breathing \n - Heightened Focus \n - Enhanced Blood Circulation"]
   
   var delegate: AudioPlayer?
   
@@ -183,15 +183,13 @@ class WalkthroughViewController: UIViewController {
   lazy var diveInButton: UIButton = {
     let button = UIButton(type: .roundedRect)
     button.addTarget(self, action: #selector(diveIn), for: .touchUpInside)
-    button.backgroundColor = ColorPalette.primaryLight
+    button.backgroundColor = ColorPalette.secondary
     button.contentMode = .center
     button.isHidden = true
-    button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.secondary.cgColor
-    button.setTitleColor(ColorPalette.secondary, for: .normal)
+    button.setTitleColor(ColorPalette.primaryLight, for: .normal)
     button.setTitle("ENTER", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
-    button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
+    button.titleLabel?.font = UIFont(name: Font.standardWeight, size: Font.standardSize)
     button.titleLabel?.minimumScaleFactor = 0.1
     button.titleLabel?.textColor = .white
     button.translatesAutoresizingMaskIntoConstraints = false

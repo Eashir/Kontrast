@@ -280,11 +280,9 @@ class HomeViewController: UIViewController, AudioPlayer {
   lazy var startButton: UIButton = {
     let button = UIButton()
     button.addTarget(self, action: #selector(startOrStopTapped(_:)), for: .touchUpInside)
-    button.backgroundColor = ColorPalette.primaryLight
+    button.backgroundColor = ColorPalette.secondary
     button.contentMode = .center
-    button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.secondaryLight.cgColor
-    button.setTitleColor(ColorPalette.secondary, for: .normal)
+    button.setTitleColor(ColorPalette.primaryLight, for: .normal)
     button.setTitle("START", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
     button.titleLabel?.font = UIFont(name: Font.standardWeight, size: Font.standardSize)
@@ -312,7 +310,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   
   lazy var timeLabel: UILabel = {
     let label = UILabel()
-    label.textColor = ColorPalette.secondary
+    label.textColor = ColorPalette.primaryLight
     label.font = UIFont(name: Font.standardWeight, size: Font.largeSize)
     label.text = "\(Int(Defaults[.hotDuration]))"
     return label

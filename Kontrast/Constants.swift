@@ -11,11 +11,11 @@ import ChameleonFramework
 
 struct ColorPalette {
   
-  static var primary = HexColor("FFFFFF")!
-  static var primaryLight = HexColor("F3F1EE")!
-  static var primaryDark = HexColor("E1DDD8")!
+  static var primary = HexColor("F3F3F3")!
+  static var primaryLight = HexColor("FFFFFF")!
+  static var primaryDark = HexColor("C7C7C7")!
   
-  static var secondary = HexColor("5f5a53")!
+  static var secondary = HexColor("3A3938")!
   static var secondaryLight = HexColor("8c877f")!
   static var secondaryDark = HexColor("35312a")!
   
