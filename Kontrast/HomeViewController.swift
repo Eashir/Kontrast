@@ -220,7 +220,7 @@ class HomeViewController: UIViewController, AudioPlayer {
     startButton.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.bottom.equalToSuperview().offset(-Layout.screenHeight * 0.2)
-      make.width.equalTo(100)
+      make.width.equalTo(90)
       make.height.equalTo(50)
     }
   }
@@ -283,11 +283,11 @@ class HomeViewController: UIViewController, AudioPlayer {
     button.backgroundColor = ColorPalette.primaryLight
     button.contentMode = .center
     button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.secondary.cgColor
+    button.layer.borderColor = ColorPalette.secondaryLight.cgColor
     button.setTitleColor(ColorPalette.secondary, for: .normal)
     button.setTitle("START", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
-    button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
+    button.titleLabel?.font = UIFont(name: Font.standardWeight, size: Font.standardSize)
     button.titleLabel?.minimumScaleFactor = 0.1
     button.titleLabel?.textColor = .white
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -313,7 +313,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   lazy var timeLabel: UILabel = {
     let label = UILabel()
     label.textColor = ColorPalette.secondary
-    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
+    label.font = UIFont(name: Font.standardWeight, size: Font.largeSize)
     label.text = "\(Int(Defaults[.hotDuration]))"
     return label
   }()

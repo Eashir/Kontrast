@@ -22,23 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     BITHockeyManager.shared().start()
     BITHockeyManager.shared().authenticator.authenticateInstallation()
     
-//    if Defaults[.didSeeWalkthrough] {
-//      self.window = UIWindow(frame: UIScreen.main.bounds)
-//      let rootVC = HomeViewController()
-//      let navigationController = KontrastNavigationController(rootViewController: rootVC)
-//      navigationController.navigationBar.isTranslucent = false
-//      self.window?.rootViewController = navigationController
-//      self.window?.makeKeyAndVisible()
-//    }
-    
-//    else {
+    if Defaults[.didSeeWalkthrough] {
       self.window = UIWindow(frame: UIScreen.main.bounds)
       let rootVC = HomeViewController()
       let navigationController = KontrastNavigationController(rootViewController: rootVC)
       navigationController.navigationBar.isTranslucent = false
       self.window?.rootViewController = navigationController
       self.window?.makeKeyAndVisible()
-//    }
+    }
+    
+    else {
+      self.window = UIWindow(frame: UIScreen.main.bounds)
+      let rootVC = WalkthroughViewController()
+      let navigationController = KontrastNavigationController(rootViewController: rootVC)
+      navigationController.navigationBar.isTranslucent = false
+      self.window?.rootViewController = navigationController
+      self.window?.makeKeyAndVisible()
+    }
     return true
   }
   

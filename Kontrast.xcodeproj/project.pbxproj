@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		80F16DDADB25699E6FF41A9A /* Pods_KontrastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9495551E260E8C9F00747887 /* Pods_KontrastTests.framework */; };
+		CC0643A01F8EECCC002749B2 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CC06439F1F8EECCC002749B2 /* LaunchScreen.png */; };
+		CC0643A21F8EF3DE002749B2 /* Gotham Extra Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC0643A11F8EF3DE002749B2 /* Gotham Extra Light.otf */; };
+		CC0643A41F8EF3F0002749B2 /* Gotham Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC0643A31F8EF3F0002749B2 /* Gotham Light.otf */; };
 		CC066C1E1F4E0BF4005E0D2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */; };
 		CC066C201F4E0BF4005E0D2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */; };
 		CC066C251F4E0BF4005E0D2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC066C241F4E0BF4005E0D2A /* Assets.xcassets */; };
@@ -26,7 +29,6 @@
 		CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */; };
 		CC33394E1F6BB78D00BA9A9C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */; };
 		CC6C23C21F6A17B600079133 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6C23C11F6A17B600079133 /* SettingsViewController.swift */; };
-		CCB1714C1F884A2A00439983 /* App Logo K.png in Resources */ = {isa = PBXBuildFile; fileRef = CCB1714B1F884A2A00439983 /* App Logo K.png */; };
 		DB5731CA07EB36A72B9EDF25 /* Pods_Kontrast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C4240B8D96F08C16417DFB /* Pods_Kontrast.framework */; };
 		E13D3E08BA9434A750466DF5 /* Pods_KontrastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50257CB964149DACBB68B6 /* Pods_KontrastUITests.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,9 @@
 		8E50257CB964149DACBB68B6 /* Pods_KontrastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KontrastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9495551E260E8C9F00747887 /* Pods_KontrastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KontrastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C4240B8D96F08C16417DFB /* Pods_Kontrast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kontrast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC06439F1F8EECCC002749B2 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		CC0643A11F8EF3DE002749B2 /* Gotham Extra Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Extra Light.otf"; sourceTree = "<group>"; };
+		CC0643A31F8EF3F0002749B2 /* Gotham Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Light.otf"; sourceTree = "<group>"; };
 		CC066C1A1F4E0BF4005E0D2A /* Kontrast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kontrast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -81,7 +86,6 @@
 		CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CC6C23C11F6A17B600079133 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CC7FCB831F70A47900050526 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		CCB1714B1F884A2A00439983 /* App Logo K.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "App Logo K.png"; sourceTree = "<group>"; };
 		D7094E44EA270DEC7B549959 /* Pods-KontrastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastUITests/Pods-KontrastUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE8CEBC68A0983862FE7219A /* Pods-KontrastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastTests/Pods-KontrastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,10 +225,12 @@
 		CC7FCB811F709E6B00050526 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				CC0643A31F8EF3F0002749B2 /* Gotham Light.otf */,
+				CC0643A11F8EF3DE002749B2 /* Gotham Extra Light.otf */,
 				CC066C241F4E0BF4005E0D2A /* Assets.xcassets */,
+				CC06439F1F8EECCC002749B2 /* LaunchScreen.png */,
 				CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */,
 				CC7FCB831F70A47900050526 /* Header.h */,
-				CCB1714B1F884A2A00439983 /* App Logo K.png */,
 				CC066C261F4E0BF4005E0D2A /* LaunchScreen.storyboard */,
 				CC066C291F4E0BF4005E0D2A /* Info.plist */,
 				CC066C4B1F4E0C2B005E0D2A /* Constants.swift */,
@@ -360,12 +366,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0643A01F8EECCC002749B2 /* LaunchScreen.png in Resources */,
 				CC1808F41F7C661E00B89642 /* PartThree.json in Resources */,
-				CCB1714C1F884A2A00439983 /* App Logo K.png in Resources */,
 				CC1808EF1F7C45A400B89642 /* PartOne.json in Resources */,
+				CC0643A21F8EF3DE002749B2 /* Gotham Extra Light.otf in Resources */,
 				CC1808F51F7C661E00B89642 /* PartTwo.json in Resources */,
 				CC066C281F4E0BF4005E0D2A /* LaunchScreen.storyboard in Resources */,
 				CC066C251F4E0BF4005E0D2A /* Assets.xcassets in Resources */,
+				CC0643A41F8EF3F0002749B2 /* Gotham Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,7 +674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -711,7 +719,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

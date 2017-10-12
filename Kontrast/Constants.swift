@@ -37,7 +37,8 @@ struct Layout {
 }
 
 struct Font {
-  static var lightWeight: String = "HelveticaNeue-Light"
+  static var lightWeight: String = "Gotham-ExtraLight"
+  static var standardWeight: String = "Gotham-Light"
   
   static var standardSize: CGFloat = 16
   static var mediumSize: CGFloat = 20
