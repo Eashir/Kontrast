@@ -9,7 +9,6 @@
 import AVFoundation
 import UIKit
 import SnapKit
-import Hero
 import SwiftyUserDefaults
 import KDCircularProgress
 import Lottie
@@ -50,9 +49,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   // MARK: - Background Task Management
   
   func registerBackgroundTask() {
-    backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-      self?.endBackgroundTask()
-    }
+    backgroundTask = UIApplication.shared.beginBackgroundTask()
     assert(backgroundTask != UIBackgroundTaskInvalid)
   }
   
@@ -73,6 +70,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   func animate() {
     guard currentCycle != Int(Defaults[.numberOfCycles]) else {
       self.startButton.setTitle("START", for: .normal)
+      endBackgroundTask()
       return
     }
     
@@ -220,7 +218,7 @@ class HomeViewController: UIViewController, AudioPlayer {
     startButton.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.bottom.equalToSuperview().offset(-Layout.screenHeight * 0.2)
-      make.width.equalTo(100)
+      make.width.equalTo(90)
       make.height.equalTo(50)
     }
   }
@@ -280,14 +278,12 @@ class HomeViewController: UIViewController, AudioPlayer {
   lazy var startButton: UIButton = {
     let button = UIButton()
     button.addTarget(self, action: #selector(startOrStopTapped(_:)), for: .touchUpInside)
-    button.backgroundColor = ColorPalette.primaryLight
+    button.backgroundColor = ColorPalette.secondary
     button.contentMode = .center
-    button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.secondary.cgColor
-    button.setTitleColor(ColorPalette.secondary, for: .normal)
+    button.setTitleColor(ColorPalette.primaryLight, for: .normal)
     button.setTitle("START", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
-    button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
+    button.titleLabel?.font = UIFont(name: Font.standardWeight, size: Font.standardSize)
     button.titleLabel?.minimumScaleFactor = 0.1
     button.titleLabel?.textColor = .white
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -312,8 +308,8 @@ class HomeViewController: UIViewController, AudioPlayer {
   
   lazy var timeLabel: UILabel = {
     let label = UILabel()
-    label.textColor = ColorPalette.secondary
-    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
+    label.textColor = ColorPalette.primaryLight
+    label.font = UIFont(name: Font.standardWeight, size: Font.largeSize)
     label.text = "\(Int(Defaults[.hotDuration]))"
     return label
   }()

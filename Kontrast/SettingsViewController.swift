@@ -6,7 +6,7 @@
 //  Copyright © 2017 Eashir Arafat. All rights reserved.
 //
 
-import Hero
+import ChameleonFramework
 import UIKit
 import SnapKit
 import SwiftyUserDefaults
@@ -68,18 +68,19 @@ class SettingsViewController: UIViewController {
     
     settingsLabel.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
-      make.top.equalToSuperview().offset(Layout.largeOffset + Int(Layout.statusBarHeight))
+      make.top.equalToSuperview().offset(64 + Int(Layout.statusBarHeight))
     }
     
     cycleSettingsView.snp.makeConstraints { (make) in
       make.leading.equalToSuperview().offset(Layout.largeOffset)
-      make.top.equalTo(settingsLabel.snp.bottom).offset(Layout.largeOffset + Int(Layout.statusBarHeight))
+      make.top.equalTo(settingsLabel.snp.bottom).offset(64)
       make.leading.equalToSuperview().offset(Layout.largeOffset)
       make.trailing.equalToSuperview().offset(-Layout.largeOffset)
     }
     
     cycleTextField.snp.makeConstraints { (make) in
-      make.top.trailing.equalTo(cycleSettingsView)
+      make.trailing.equalTo(cycleSettingsView)
+      make.centerY.equalTo(cycleSettingsView.mainLabel.snp.centerY)
       make.height.equalTo(30)
       make.width.equalTo(40)
     }
@@ -90,7 +91,8 @@ class SettingsViewController: UIViewController {
     }
     
     coldDurationTextField.snp.makeConstraints { (make) in
-      make.top.trailing.equalTo(durationSettingsView)
+      make.trailing.equalTo(durationSettingsView)
+      make.centerY.equalTo(durationSettingsView.mainLabel.snp.centerY)
       make.height.equalTo(30)
       make.width.equalTo(40)
     }
@@ -114,7 +116,7 @@ class SettingsViewController: UIViewController {
     
     backLabel.snp.makeConstraints { (make) in
       make.centerY.equalTo(settingsLabel.snp.centerY)
-      make.trailing.equalToSuperview().offset(-Layout.mediumOffset)
+      make.centerX.equalTo(cycleTextField.snp.centerX)
     }
     
     backButton.snp.makeConstraints { (make) in
@@ -133,7 +135,7 @@ class SettingsViewController: UIViewController {
   
   lazy var settingsLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont(name: Font.lightWeight, size: Font.largeSize)
+    label.font = UIFont(name: Font.standardWeight, size: Font.largeSize)
     label.textColor = ColorPalette.secondary
     label.text = "SETTINGS"
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -175,6 +177,9 @@ class SettingsViewController: UIViewController {
   
   lazy var radialBackgroundView: UIView = {
     let view = RadialGradientView()
+    var primary = HexColor("FFFFFF")!
+    var primaryDark = HexColor("E1DDD8")!
+    view.colors = [primary, primaryDark]
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
@@ -184,9 +189,9 @@ class SettingsViewController: UIViewController {
     field.autocorrectionType = .yes
     field.backgroundColor = ColorPalette.secondary
     field.borderStyle = UITextBorderStyle.none
-    field.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
+    field.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
     field.keyboardType = .numberPad
-    field.layer.cornerRadius = 9
+    field.layer.cornerRadius = 13
     field.returnKeyType = .done
     field.textColor = ColorPalette.primaryLight
     field.textAlignment = .center
@@ -198,7 +203,7 @@ class SettingsViewController: UIViewController {
   lazy var hotLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
-    label.textColor = ColorPalette.secondary
+    label.textColor = ColorPalette.secondaryDark
     label.text = "Hot"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -209,9 +214,9 @@ class SettingsViewController: UIViewController {
     field.autocorrectionType = .yes
     field.backgroundColor = ColorPalette.secondary
     field.borderStyle = UITextBorderStyle.none
-    field.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
+    field.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
     field.keyboardType = .numberPad
-    field.layer.cornerRadius = 9
+    field.layer.cornerRadius = 13
     field.returnKeyType = .done
     field.textColor = ColorPalette.primaryLight
     field.textAlignment = .center
@@ -223,7 +228,7 @@ class SettingsViewController: UIViewController {
   lazy var coldLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
-    label.textColor = ColorPalette.secondary
+    label.textColor = ColorPalette.secondaryDark
     label.text = "Cold"
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -234,9 +239,9 @@ class SettingsViewController: UIViewController {
     field.autocorrectionType = .yes
     field.backgroundColor = ColorPalette.secondary
     field.borderStyle = UITextBorderStyle.none
-    field.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
+    field.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
     field.keyboardType = .numberPad
-    field.layer.cornerRadius = 9
+    field.layer.cornerRadius = 13
     field.returnKeyType = .done
     field.textColor = ColorPalette.primaryLight
     field.textAlignment = .center

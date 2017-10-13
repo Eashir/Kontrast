@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import ChameleonFramework
 import Lottie
 import SwiftyUserDefaults
 
@@ -17,7 +18,7 @@ class WalkthroughViewController: UIViewController {
   var partTwoAnimationView = LOTAnimationView(name: "PartTwo")
   var partThreeAnimationView = LOTAnimationView(name: "PartThree")
 
-  var walkthroughStringArray = ["WELCOME! \n\nA contrast shower is an awesome way \nto start your day","\n\nSet the timer by rotating it, and then hit start right before you're ready to step into the shower. \n\n Recommended duration is 90 seconds!", "Make sure the waters VERY hot (but not burning). As soon as the timer runs out, you'll hear a sound", "Thats your queue to switch to icy cold water!", "\n\n Continue to keep alternating at every ding as this will repeat 3 more times by default \n\n\n\n Benefits include:\n\n - Improved Breathing \n - Heightened Focus \n - Enhanced Blood Circulation"]
+  var walkthroughStringArray = ["WELCOME! \n\nA contrast shower is an awesome \nway to start your day","\n\nSet the timer by rotating it, and then hit start right before you're ready to step into the shower. \n\n\n\n\n\n\n\n Recommended duration is 90 seconds!", "Make sure the waters VERY hot (but not burning). As soon as the timer runs out, you'll hear a sound", "Thats your queue to switch to icy cold water!", "\n\n Continue to keep alternating at every ding as this will repeat 3 more times by default \n\n\n\n Benefits include:\n\n - Improved Breathing \n - Heightened Focus \n - Enhanced Blood Circulation"]
   
   var delegate: AudioPlayer?
   
@@ -48,7 +49,7 @@ class WalkthroughViewController: UIViewController {
       let textView = UITextView(frame: CGRect(x: scrollView.center.x + CGFloat(i) * self.view.frame.size.width, y: ((self.view.frame.size.height) * (0.1)), width: self.view.frame.size.width, height: 400))
       textView.backgroundColor = .clear
       textView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(Layout.mediumOffset), bottom: 0, right: CGFloat(Layout.mediumOffset))
-      textView.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
+      textView.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
       textView.isUserInteractionEnabled = false
       textView.text = walkthroughStringArray[i]
       textView.textAlignment = .center
@@ -83,7 +84,7 @@ class WalkthroughViewController: UIViewController {
     diveInButton.snp.makeConstraints { (make) in
       make.bottom.equalToSuperview().offset(-Layout.largeOffset)
       make.centerX.equalToSuperview()
-      make.width.equalTo(100)
+      make.width.equalTo(90)
       make.height.equalTo(50)
     }
     
@@ -186,8 +187,6 @@ class WalkthroughViewController: UIViewController {
     button.backgroundColor = ColorPalette.primaryLight
     button.contentMode = .center
     button.isHidden = true
-    button.layer.borderWidth = 2
-    button.layer.borderColor = ColorPalette.secondary.cgColor
     button.setTitleColor(ColorPalette.secondary, for: .normal)
     button.setTitle("ENTER", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -218,6 +217,9 @@ class WalkthroughViewController: UIViewController {
   
   lazy var radialBackgroundView: UIView = {
     let view = RadialGradientView()
+    var primary = HexColor("FFFFFF")!
+    var primaryDark = HexColor("E1DDD8")!
+    view.colors = [primary, primaryDark]
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
@@ -233,7 +235,7 @@ class WalkthroughViewController: UIViewController {
   
   lazy var walkthroughLabel: UILabel = {
     let label = UILabel()
-    label.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
+    label.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
     label.numberOfLines = 0
     label.textAlignment = .center
     label.textColor = ColorPalette.secondary

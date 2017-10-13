@@ -6,7 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,30 +22,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BUb-T9-JZj">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="App Logo K.png" translatesAutoresizingMaskIntoConstraints="NO" id="ruZ-HU-TEr">
-                                        <rect key="frame" x="-3.5" y="148.5" width="350" height="350"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="350" id="S5O-WG-vs4"/>
-                                            <constraint firstAttribute="width" constant="350" id="esQ-SL-L9O"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="ruZ-HU-TEr" firstAttribute="centerY" secondItem="BUb-T9-JZj" secondAttribute="centerY" id="SOe-H0-qmi"/>
-                                    <constraint firstItem="ruZ-HU-TEr" firstAttribute="centerX" secondItem="BUb-T9-JZj" secondAttribute="centerX" id="olS-a5-VvO"/>
-                                </constraints>
-                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="Vih-Pp-rzj">
+                                <rect key="frame" x="37" y="183.5" width="300" height="300.5"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.22745098039215686" green="0.22352941176470587" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="BUb-T9-JZj" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="90Q-aB-AUq"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="BUb-T9-JZj" secondAttribute="bottom" id="YlL-ga-C8U"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BUb-T9-JZj" secondAttribute="trailing" id="hik-Ri-Bvw"/>
-                            <constraint firstItem="BUb-T9-JZj" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="ipB-pV-4Nz"/>
+                            <constraint firstItem="Vih-Pp-rzj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4Sj-fQ-vnX"/>
+                            <constraint firstItem="Vih-Pp-rzj" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="UxQ-x5-v6z"/>
+                            <constraint firstItem="Vih-Pp-rzj" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="j9o-L4-TPz"/>
+                            <constraint firstItem="Vih-Pp-rzj" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.45" id="jTu-jG-Fax"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -55,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="App Logo K.png" width="1024" height="1024"/>
+        <image name="Launch" width="1024" height="1024"/>
     </resources>
 </document>

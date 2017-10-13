@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HockeySDK
 import SwiftyUserDefaults
 
 @UIApplicationMain
@@ -17,28 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    BITHockeyManager.shared().configure(withIdentifier: "0f01b6c1ef434ceea4ec2256a1535edc")
-    // Do some additional configuration if needed here
-    BITHockeyManager.shared().start()
-    BITHockeyManager.shared().authenticator.authenticateInstallation()
     
-//    if Defaults[.didSeeWalkthrough] {
-//      self.window = UIWindow(frame: UIScreen.main.bounds)
-//      let rootVC = HomeViewController()
-//      let navigationController = KontrastNavigationController(rootViewController: rootVC)
-//      navigationController.navigationBar.isTranslucent = false
-//      self.window?.rootViewController = navigationController
-//      self.window?.makeKeyAndVisible()
-//    }
-    
-//    else {
+    if Defaults[.didSeeWalkthrough] {
       self.window = UIWindow(frame: UIScreen.main.bounds)
-      let rootVC = HomeViewController()
+      let rootVC = WalkthroughViewController()
       let navigationController = KontrastNavigationController(rootViewController: rootVC)
       navigationController.navigationBar.isTranslucent = false
       self.window?.rootViewController = navigationController
       self.window?.makeKeyAndVisible()
-//    }
+    }
+    
+    else {
+      self.window = UIWindow(frame: UIScreen.main.bounds)
+      let rootVC = WalkthroughViewController()
+      let navigationController = KontrastNavigationController(rootViewController: rootVC)
+      navigationController.navigationBar.isTranslucent = false
+      self.window?.rootViewController = navigationController
+      self.window?.makeKeyAndVisible()
+    }
     return true
   }
   
