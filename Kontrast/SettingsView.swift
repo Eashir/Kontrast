@@ -44,7 +44,7 @@ class SettingsView: UIView {
   lazy var mainLabel: UILabel = {
     let label = UILabel()
     label.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
-    label.textColor = ColorPalette.secondary
+    label.textColor = ColorPalette.secondaryDark
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -53,7 +53,7 @@ class SettingsView: UIView {
     let label = UILabel()
     label.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
     label.numberOfLines = 0
-    label.textColor = ColorPalette.secondary
+    label.textColor = ColorPalette.secondaryLight
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()

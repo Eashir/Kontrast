@@ -10,7 +10,7 @@
 		80F16DDADB25699E6FF41A9A /* Pods_KontrastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9495551E260E8C9F00747887 /* Pods_KontrastTests.framework */; };
 		CC0643A21F8EF3DE002749B2 /* Gotham Extra Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC0643A11F8EF3DE002749B2 /* Gotham Extra Light.otf */; };
 		CC0643A41F8EF3F0002749B2 /* Gotham Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC0643A31F8EF3F0002749B2 /* Gotham Light.otf */; };
-		CC0643C41F9035B8002749B2 /* LaunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0643C31F9035B8002749B2 /* LaunchScreen.png */; };
+		CC0643C81F903CAC002749B2 /* Launch.png in Resources */ = {isa = PBXBuildFile; fileRef = CC0643C71F903CAC002749B2 /* Launch.png */; };
 		CC066C1E1F4E0BF4005E0D2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */; };
 		CC066C201F4E0BF4005E0D2A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */; };
 		CC066C251F4E0BF4005E0D2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC066C241F4E0BF4005E0D2A /* Assets.xcassets */; };
@@ -60,7 +60,7 @@
 		C0C4240B8D96F08C16417DFB /* Pods_Kontrast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kontrast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0643A11F8EF3DE002749B2 /* Gotham Extra Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Extra Light.otf"; sourceTree = "<group>"; };
 		CC0643A31F8EF3F0002749B2 /* Gotham Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Light.otf"; sourceTree = "<group>"; };
-		CC0643C31F9035B8002749B2 /* LaunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LaunchScreen.png; sourceTree = "<group>"; };
+		CC0643C71F903CAC002749B2 /* Launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Launch.png; sourceTree = "<group>"; };
 		CC066C1A1F4E0BF4005E0D2A /* Kontrast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kontrast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC066C1F1F4E0BF4005E0D2A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -85,7 +85,6 @@
 		CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFingerGestureRecognizer.swift; sourceTree = "<group>"; };
 		CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CC6C23C11F6A17B600079133 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		CC7FCB831F70A47900050526 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		D7094E44EA270DEC7B549959 /* Pods-KontrastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastUITests/Pods-KontrastUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FE8CEBC68A0983862FE7219A /* Pods-KontrastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastTests/Pods-KontrastTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,8 +228,7 @@
 				CC0643A11F8EF3DE002749B2 /* Gotham Extra Light.otf */,
 				CC066C241F4E0BF4005E0D2A /* Assets.xcassets */,
 				CC066C1D1F4E0BF4005E0D2A /* AppDelegate.swift */,
-				CC0643C31F9035B8002749B2 /* LaunchScreen.png */,
-				CC7FCB831F70A47900050526 /* Header.h */,
+				CC0643C71F903CAC002749B2 /* Launch.png */,
 				CC066C261F4E0BF4005E0D2A /* LaunchScreen.storyboard */,
 				CC066C291F4E0BF4005E0D2A /* Info.plist */,
 				CC066C4B1F4E0C2B005E0D2A /* Constants.swift */,
@@ -366,13 +364,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0643C81F903CAC002749B2 /* Launch.png in Resources */,
 				CC1808F41F7C661E00B89642 /* PartThree.json in Resources */,
 				CC1808EF1F7C45A400B89642 /* PartOne.json in Resources */,
 				CC0643A21F8EF3DE002749B2 /* Gotham Extra Light.otf in Resources */,
 				CC1808F51F7C661E00B89642 /* PartTwo.json in Resources */,
 				CC066C281F4E0BF4005E0D2A /* LaunchScreen.storyboard in Resources */,
 				CC066C251F4E0BF4005E0D2A /* Assets.xcassets in Resources */,
-				CC0643C41F9035B8002749B2 /* LaunchScreen.png in Resources */,
 				CC0643A41F8EF3F0002749B2 /* Gotham Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +467,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Kontrast/Pods-Kontrast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
-				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/KDCircularProgress/KDCircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyUserDefaults/SwiftyUserDefaults.framework",
@@ -479,7 +476,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDCircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyUserDefaults.framework",
@@ -733,12 +729,14 @@
 			baseConfigurationReference = 78A5CBED29DB5CF018FA7E7C /* Pods-Kontrast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 88EN34P563;
 				INFOPLIST_FILE = Kontrast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eashirarafat.Kontrast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -748,12 +746,14 @@
 			baseConfigurationReference = 4B8403B8D5FA443D224B6C78 /* Pods-Kontrast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 88EN34P563;
 				INFOPLIST_FILE = Kontrast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = eashirarafat.Kontrast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

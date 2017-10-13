@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import ChameleonFramework
 import Lottie
 import SwiftyUserDefaults
 
@@ -183,13 +184,13 @@ class WalkthroughViewController: UIViewController {
   lazy var diveInButton: UIButton = {
     let button = UIButton(type: .roundedRect)
     button.addTarget(self, action: #selector(diveIn), for: .touchUpInside)
-    button.backgroundColor = ColorPalette.secondary
+    button.backgroundColor = ColorPalette.primaryLight
     button.contentMode = .center
     button.isHidden = true
-    button.setTitleColor(ColorPalette.primaryLight, for: .normal)
+    button.setTitleColor(ColorPalette.secondary, for: .normal)
     button.setTitle("ENTER", for: .normal)
     button.titleLabel?.adjustsFontSizeToFitWidth = true
-    button.titleLabel?.font = UIFont(name: Font.standardWeight, size: Font.standardSize)
+    button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
     button.titleLabel?.minimumScaleFactor = 0.1
     button.titleLabel?.textColor = .white
     button.translatesAutoresizingMaskIntoConstraints = false
@@ -216,6 +217,9 @@ class WalkthroughViewController: UIViewController {
   
   lazy var radialBackgroundView: UIView = {
     let view = RadialGradientView()
+    var primary = HexColor("FFFFFF")!
+    var primaryDark = HexColor("E1DDD8")!
+    view.colors = [primary, primaryDark]
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()

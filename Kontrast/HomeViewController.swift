@@ -9,7 +9,6 @@
 import AVFoundation
 import UIKit
 import SnapKit
-import Hero
 import SwiftyUserDefaults
 import KDCircularProgress
 import Lottie
@@ -50,9 +49,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   // MARK: - Background Task Management
   
   func registerBackgroundTask() {
-    backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-      self?.endBackgroundTask()
-    }
+    backgroundTask = UIApplication.shared.beginBackgroundTask()
     assert(backgroundTask != UIBackgroundTaskInvalid)
   }
   
@@ -73,6 +70,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   func animate() {
     guard currentCycle != Int(Defaults[.numberOfCycles]) else {
       self.startButton.setTitle("START", for: .normal)
+      endBackgroundTask()
       return
     }
     
