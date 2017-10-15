@@ -49,11 +49,11 @@ class WalkthroughViewController: UIViewController {
       let textView = UITextView(frame: CGRect(x: scrollView.center.x + CGFloat(i) * self.view.frame.size.width, y: ((self.view.frame.size.height) * (0.1)), width: self.view.frame.size.width, height: 400))
       textView.backgroundColor = .clear
       textView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(Layout.mediumOffset), bottom: 0, right: CGFloat(Layout.mediumOffset))
-      textView.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
+      textView.font = UIFont(name: Font.lightWeight, size: Font.mediumSize)
       textView.isUserInteractionEnabled = false
       textView.text = walkthroughStringArray[i]
       textView.textAlignment = .center
-      textView.textColor = ColorPalette.secondaryLight
+      textView.textColor = ColorPalette.secondaryDark
       scrollView.addSubview(textView)
     }
   }

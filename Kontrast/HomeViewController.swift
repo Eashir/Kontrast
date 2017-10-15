@@ -74,7 +74,7 @@ class HomeViewController: UIViewController, AudioPlayer {
       return
     }
     
-    // Adding 2 to durations to allow time to switch water temp
+    // Adding two to durations to allow time for user to switch water temp
     self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.hotDuration] + 2)) { completed in
       guard completed != false else {
         print("Hot Progess was interrupted")
@@ -138,13 +138,11 @@ class HomeViewController: UIViewController, AudioPlayer {
       startButton.setTitle("STOP", for: .normal)
       registerBackgroundTask()
       animate()
-      if backgroundTask != UIBackgroundTaskInvalid {
-        endBackgroundTask()
-      }
     } else {
       circularProgress.stopAnimation()
       startButton.setTitle("START", for: .normal)
     }
+
   }
   
   func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
