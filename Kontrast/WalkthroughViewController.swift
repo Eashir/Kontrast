@@ -273,7 +273,6 @@ extension WalkthroughViewController: UIScrollViewDelegate {
     default:
       break
     }
-    
   }
   
 }
