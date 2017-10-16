@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="Vih-Pp-rzj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vih-Pp-rzj">
                                 <rect key="frame" x="37" y="183.5" width="300" height="300.5"/>
                             </imageView>
                         </subviews>
@@ -41,6 +41,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Launch" width="1024" height="1024"/>
+        <image name="Launch.png" width="1024" height="1024"/>
     </resources>
 </document>

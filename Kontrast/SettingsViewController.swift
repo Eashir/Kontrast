@@ -177,9 +177,6 @@ class SettingsViewController: UIViewController {
   
   lazy var radialBackgroundView: UIView = {
     let view = RadialGradientView()
-    var primary = HexColor("FFFFFF")!
-    var primaryDark = HexColor("E1DDD8")!
-    view.colors = [primary, primaryDark]
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
