@@ -282,7 +282,7 @@ extension SettingsViewController: UITextFieldDelegate {
           }
           Defaults[.hotDuration] = Int((activeTextField?.text)!)!
           Defaults[.hotToColdRatio] = (CGFloat(Double((activeTextField?.text)!)! / Double(Defaults[.coldDuration])))
-          
+          //Fix cold duration bug
         case 3:
           guard activeTextFieldInput <= (Double(Defaults[.hotDuration])) && activeTextFieldInput < 1200.0 else {
             return
