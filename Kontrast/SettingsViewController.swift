@@ -14,6 +14,7 @@ import SwiftyUserDefaults
 class SettingsViewController: UIViewController {
   
   var activeTextField: UITextField?
+	var cycleDuration: Double!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +36,12 @@ class SettingsViewController: UIViewController {
     }
     return true
   }
+	
+	func isCycleLessThanTwenty(activeTextField: Double) {
+		guard activeTextField < 20 else {
+			return
+		}
+	}
   
   // MARK: - Actions
   
@@ -271,9 +278,7 @@ extension SettingsViewController: UITextFieldDelegate {
         switch validTag {
           
         case 1:
-          guard activeTextFieldInput < 20 else {
-            return
-          }
+					isCycleLessThanTwenty(activeTextField: activeTextFieldInput)
           Defaults[.numberOfCycles] = activeTextFieldInput
           
         case 2:

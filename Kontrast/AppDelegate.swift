@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 import SwiftyUserDefaults
 
 @UIApplicationMain
@@ -16,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
-    
+    UIApplication.shared.applicationIconBadgeNumber = 0
+		
     if Defaults[.didSeeWalkthrough] {
       self.window = UIWindow(frame: UIScreen.main.bounds)
       let rootVC = HomeViewController()
@@ -34,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window?.rootViewController = navigationController
       self.window?.makeKeyAndVisible()
     }
+//		registerForPushNotifications()
     return true
   }
   
@@ -62,7 +65,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-  
-  
+	
+//	func getNotificationSettings() {
+//		UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+//			print("Notification settings: \(settings)")
+//			guard settings.authorizationStatus == .authorized else { return }
+//			UIApplication.shared.registerForRemoteNotifications()
+//		}
+//	}
+//	
+//	func registerForPushNotifications() {
+//		UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+//			(granted, error) in
+//			print("Permission granted: \(granted)")
+//			
+//			guard granted else { return }
+//			self.getNotificationSettings()
+//		}
+//	}
+//	
+	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+		let tokenParts = deviceToken.map { data -> String in
+			return String(format: "%02.2hhx", data)
+		}
+		
+		let token = tokenParts.joined()
+		print("Device Token: \(token)")
+	}
+	
+	func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+		print("Failed to register: \(error)")
+	}
+
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+	
+	func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+		UIApplication.shared.applicationIconBadgeNumber = 0
+	}
+	
 }
 
