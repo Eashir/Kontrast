@@ -31,7 +31,7 @@ class HomeViewController: UIViewController, AudioPlayer {
     do {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.mixWithOthers)
     } catch { }
-    
+		
     setupViewHierarchy()
     configureConstraints()
     configureGestureRecognizers()
