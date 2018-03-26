@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController {
   
   // MARK: - Actions
   
-  func backButtonTapped(_ sender: UIButton) {
+  @objc func backButtonTapped(_ sender: UIButton) {
     let homeVC = HomeViewController()
     let transition = CATransition()
     transition.duration = 0.5

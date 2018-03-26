@@ -141,7 +141,7 @@ class WalkthroughViewController: UIViewController {
   
   // MARK: - Actions
   
-  func diveIn() {
+  @objc func diveIn() {
     Defaults[.didSeeWalkthrough] = true
     
     let homeVC = HomeViewController()

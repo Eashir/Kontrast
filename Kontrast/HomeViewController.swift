@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, AudioPlayer {
     backgroundTask = UIBackgroundTaskInvalid
   }
   
-  func reinstateBackgroundTask() {
+  @objc func reinstateBackgroundTask() {
     if circularProgress.isAnimating() && (backgroundTask == UIBackgroundTaskInvalid) {
       registerBackgroundTask()
     }
@@ -114,7 +114,7 @@ class HomeViewController: UIViewController, AudioPlayer {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
       try AVAudioSession.sharedInstance().setActive(true)
       
-      player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileTypeMPEGLayer3)
+      player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileType.mp3.rawValue)
       player!.play()
     } catch let error as NSError {
       print("error: \(error.localizedDescription)")
@@ -128,7 +128,7 @@ class HomeViewController: UIViewController, AudioPlayer {
   
   // MARK: - Actions
   
-  func startOrStopTapped(_ sender: UIButton) {
+  @objc func startOrStopTapped(_ sender: UIButton) {
     print("ANIMATE BUTTON TAPPED, CUMULATED ANGLE: \(Double(rotationGestureRecognizer.cumulatedAngle))")
     self.circularProgress.set(colors: UIColor.white, UIColor.orange)
     currentCycle = 0
@@ -145,7 +145,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 
   }
   
-  func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+  @objc func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
     let settingsVC = SettingsViewController()
     let transition = CATransition()
     transition.duration = 0.5
