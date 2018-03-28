@@ -105,22 +105,6 @@ class HomeViewController: UIViewController, AudioPlayer {
     settingsActionView.addGestureRecognizer(tapGestureRecognizer)
   }
   
-  func playSound() {
-    guard let sound = NSDataAsset(name: "Ding") else {
-      print("asset not found")
-      return
-    }
-    do {
-      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-      try AVAudioSession.sharedInstance().setActive(true)
-      
-      player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileType.mp3.rawValue)
-      player!.play()
-    } catch let error as NSError {
-      print("error: \(error.localizedDescription)")
-    }
-  }
-  
   func roundOutViews() {
     startButton.layoutIfNeeded()
     startButton.roundButton()
@@ -142,7 +126,6 @@ class HomeViewController: UIViewController, AudioPlayer {
       circularProgress.stopAnimation()
       startButton.setTitle("START", for: .normal)
     }
-
   }
   
   @objc func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -374,4 +357,22 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
   }
   
+}
+
+extension AudioPlayer {
+	func playSound() {
+		guard let sound = NSDataAsset(name: "Ding") else {
+			print("asset not found")
+			return
+		}
+		do {
+			try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+			try AVAudioSession.sharedInstance().setActive(true)
+			
+			player = try AVAudioPlayer(data: sound.data, fileTypeHint: AVFileType.mp3.rawValue)
+			player!.play()
+		} catch let error as NSError {
+			print("error: \(error.localizedDescription)")
+		}
+	}
 }
