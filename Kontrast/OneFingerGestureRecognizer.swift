@@ -27,7 +27,7 @@ class OneFingerRotationGestureRecognizer: UIGestureRecognizer {
     return sqrt(dx * dx + dy * dy)
   }
   
-  func angleBetweenLinesInDegrees(beginLineA: CGPoint, endLineA: CGPoint, beginLineB: CGPoint, endLineB: CGPoint) -> CGFloat {
+  func calculateAngleBetweenPoints(beginLineA: CGPoint, endLineA: CGPoint, beginLineB: CGPoint, endLineB: CGPoint) -> CGFloat {
     let a: CGFloat = endLineA.x - beginLineA.x
     let b: CGFloat = endLineA.y - beginLineA.y
     let c: CGFloat = endLineB.x - beginLineB.x
