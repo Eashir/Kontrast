@@ -152,7 +152,6 @@ class HomeViewController: UIViewController, AudioPlayer {
   }
   
   func configureConstraints() {
-    
     circularProgress.snp.makeConstraints { (make) in
       make.centerX.equalToSuperview()
       make.top.equalToSuperview().offset(Layout.screenHeight * 0.15)
@@ -319,9 +318,8 @@ extension HomeViewController: UIGestureRecognizerDelegate {
       rotationGestureRecognizer.state = .failed
       return
     }
-    
-    //Calculate angle between two touch points
-    var angle: CGFloat = rotationGestureRecognizer.angleBetweenLinesInDegrees(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
+		
+    var angle: CGFloat = rotationGestureRecognizer.calculateAngleBetweenPoints(beginLineA: midPoint, endLineA: prevPoint!, beginLineB: midPoint, endLineB: nowPoint!)
     if angle > 180 {
       angle -= 360
     }
@@ -350,7 +348,7 @@ extension HomeViewController: UIGestureRecognizerDelegate {
     
     let totalDuration = Double((rotationGestureRecognizer.cumulatedAngle)/6)
     
-    Defaults[.hotDuration] = Int(totalDuration)
+		Defaults[.hotDuration] = Int(totalDuration)
     Defaults[.coldDuration] = Int(totalDuration) / Int(Defaults[.hotToColdRatio])
     
     timeLabel.text = "\(Defaults[.hotDuration])"
