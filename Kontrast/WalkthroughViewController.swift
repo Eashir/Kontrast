@@ -39,13 +39,16 @@ class WalkthroughViewController: UIViewController {
     setupScrollView()
     
     partOneAnimationView.play()
+		
+		print("Height: \(partOneAnimationView.frame.height)")
+		print("Width: \(partOneAnimationView.frame.width)")
   }
   
   // MARK: - Setup
   
   func setupScrollView() {
     scrollView.contentSize = CGSize(width: self.view.frame.size.width * 5, height: view.frame.size.height)
-    for i in 0...4  {
+    for i in 0...walkthroughStringArray.count - 1  {
       let textView = UITextView(frame: CGRect(x: scrollView.center.x + CGFloat(i) * self.view.frame.size.width, y: ((self.view.frame.size.height) * (0.1)), width: self.view.frame.size.width, height: 400))
       textView.backgroundColor = .clear
       textView.contentInset = UIEdgeInsets(top: 0, left: CGFloat(Layout.mediumOffset), bottom: 0, right: CGFloat(Layout.mediumOffset))
@@ -105,21 +108,21 @@ class WalkthroughViewController: UIViewController {
       make.centerX.equalTo(self.scrollView.snp.centerX)
       make.centerY.equalTo(self.scrollView)
       make.height.equalTo(Layout.screenHeight / 1.66)
-      make.width.equalTo(Layout.screenWidth / 1.25)
+      make.width.equalTo(partOneAnimationView.snp.height).multipliedBy(0.773)
     })
     
     partTwoAnimationView.snp.makeConstraints({ (make) in
       make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 2)
       make.centerY.equalTo(self.scrollView)
       make.height.equalTo(Layout.screenHeight / 1.66)
-      make.width.equalTo(Layout.screenWidth / 1.25)
+      make.width.equalTo(partTwoAnimationView.snp.height).multipliedBy(0.773)
     })
     
     partThreeAnimationView.snp.makeConstraints({ (make) in
       make.centerX.equalTo(self.scrollView.snp.centerX).offset(self.view.frame.size.width * 3)
       make.centerY.equalTo(self.scrollView)
       make.height.equalTo(Layout.screenHeight / 1.66)
-      make.width.equalTo(Layout.screenWidth / 1.25)
+      make.width.equalTo(partThreeAnimationView.snp.height).multipliedBy(0.773)
     })
     
     radialBackgroundView.snp.makeConstraints { (make) in
