@@ -25,6 +25,7 @@ class SettingsViewController: UIViewController {
     
     setupViewHierarchy()
     configureConstraints()
+		roundOutViews()
   }
   
   // MARK: - Methods
@@ -42,9 +43,24 @@ class SettingsViewController: UIViewController {
 			return
 		}
 	}
-  
+	
+	func roundOutViews() {
+		replayWalkthroughButton.layoutIfNeeded()
+		replayWalkthroughButton.roundButton()
+	}
+	
   // MARK: - Actions
-  
+	
+	@objc func replayWalkthroughTapped(_ sender: UIButton) {
+		let walkthroughVC = WalkthroughViewController()
+		let transition = CATransition()
+		transition.duration = 0.5
+		transition.type = kCAGravityCenter
+		transition.subtype = kCATransitionFromRight
+		self.navigationController?.view.window?.layer.add(transition, forKey: kCATransition)
+		self.navigationController?.pushViewController(walkthroughVC, animated: false)
+	}
+	
   @objc func backButtonTapped(_ sender: UIButton) {
     let homeVC = HomeViewController()
     let transition = CATransition()
@@ -69,6 +85,7 @@ class SettingsViewController: UIViewController {
     view.addSubview(coldDurationTextField)
     view.addSubview(hotLabel)
     view.addSubview(coldLabel)
+		view.addSubview(replayWalkthroughButton)
   }
   
   func configureConstraints() {
@@ -136,6 +153,13 @@ class SettingsViewController: UIViewController {
       make.leading.top.trailing.equalToSuperview()
       make.height.equalToSuperview().multipliedBy(2)
     }
+		
+		replayWalkthroughButton.snp.makeConstraints { (make) in
+			make.bottom.equalToSuperview().offset(-Layout.largeOffset)
+			make.centerX.equalToSuperview()
+			make.width.equalTo(200)
+			make.height.equalTo(50)
+		}
   }
   
   // MARK: - Lazy Vars
@@ -253,6 +277,21 @@ class SettingsViewController: UIViewController {
     field.text = "\(Int(Defaults[.coldDuration]))"
     return field
   }()
+	
+	lazy var replayWalkthroughButton: UIButton = {
+		let button = UIButton(type: .roundedRect)
+		button.addTarget(self, action: #selector(replayWalkthroughTapped), for: .touchUpInside)
+		button.backgroundColor = ColorPalette.primaryLight
+		button.contentMode = .center
+		button.setTitleColor(ColorPalette.secondary, for: .normal)
+		button.setTitle("Replay Walkthrough", for: .normal)
+		button.titleLabel?.adjustsFontSizeToFitWidth = true
+		button.titleLabel?.font = UIFont(name: Font.lightWeight, size: Font.standardSize)
+		button.titleLabel?.minimumScaleFactor = 0.1
+		button.titleLabel?.textColor = .white
+		button.translatesAutoresizingMaskIntoConstraints = false
+		return button
+	}()
   
 }
 
