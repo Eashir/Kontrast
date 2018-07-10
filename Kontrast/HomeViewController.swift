@@ -144,7 +144,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 		
 	}
 	
-	func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+	@objc func settingsTapped(tapGestureRecognizer: UITapGestureRecognizer) {
 		let settingsVC = SettingsViewController()
 		let transition = CATransition()
 		transition.duration = 0.5

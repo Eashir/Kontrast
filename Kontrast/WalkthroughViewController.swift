@@ -144,7 +144,7 @@ class WalkthroughViewController: UIViewController {
   
   // MARK: - Actions
   
-  @objc func diveIn() {
+  @objc func diveInTapped() {
     Defaults[.didSeeWalkthrough] = true
     
     let homeVC = HomeViewController()
@@ -186,7 +186,7 @@ class WalkthroughViewController: UIViewController {
   
   lazy var diveInButton: UIButton = {
     let button = UIButton(type: .roundedRect)
-    button.addTarget(self, action: #selector(diveIn), for: .touchUpInside)
+    button.addTarget(self, action: #selector(diveInTapped), for: .touchUpInside)
     button.backgroundColor = ColorPalette.primaryLight
     button.contentMode = .center
     button.isHidden = true
