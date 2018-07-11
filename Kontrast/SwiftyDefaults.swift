@@ -34,6 +34,7 @@ extension UserDefaults {
 extension DefaultsKeys {
   static let hotDuration = DefaultsKey<Int>("hotDuration")
   static let coldDuration = DefaultsKey<Int>("coldDuration")
+	static let timerDuration = DefaultsKey<Double>("timerDuration")
   static let numberOfCycles = DefaultsKey<Double>("numberofCycles")
   static let hotToColdRatio = DefaultsKey<CGFloat>("hotToColdRatio")
   static let didSeeWalkthrough = DefaultsKey<Bool>("didSeeWalkthrough")

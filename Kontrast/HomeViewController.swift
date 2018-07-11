@@ -22,8 +22,10 @@ class HomeViewController: UIViewController, AudioPlayer {
 	var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
 	var player: AVAudioPlayer?
 	var rotationGestureRecognizer: OneFingerRotationGestureRecognizer!
+	var countdownTimer: Timer!
 	
 	var currentCycle = 0
+	var currentTimerCount = Int(Defaults[.timerDuration])
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -73,8 +75,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 			return
 		}
 		
-		// Adding two to durations to allow time for user to switch water temp
-		self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.hotDuration] + 2)) { completed in
+		self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.hotDuration])) { completed in
 			guard completed != false else {
 				print("Hot Progess was interrupted")
 				self.startButton.setTitle("START", for: .normal)
@@ -83,7 +84,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 			self.playSound()
 			print("Hot Progress completed")
 			self.circularProgress.set(colors: UIColor.white, UIColor.cyan)
-			self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.coldDuration] + 2)) { completed in
+			self.circularProgress.animate(fromAngle: 360.0, toAngle: 0.0, duration:  Double(Defaults[.coldDuration])) { completed in
 				guard completed != false else {
 					print("Cold Progess was interrupted")
 					self.startButton.setTitle("START", for: .normal)
@@ -125,9 +126,38 @@ class HomeViewController: UIViewController, AudioPlayer {
 		startButton.roundButton()
 	}
 	
+	//Timer methods
+	
+	func startTimer() { //completion: ((Bool) -> Void)?
+		countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+	}
+	
+	@objc func updateTime() {
+		
+//		print(timerDuration)
+		print(currentTimerCount)
+		if currentTimerCount != 0 {
+			currentTimerCount -= 1
+		} else {
+			animate()
+			endTimer()
+		}
+	}
+	
+	func endTimer() {
+		countdownTimer.invalidate()
+	}
+	
+	func timeFormatted(_ totalSeconds: Int) -> String {
+		let seconds: Int = totalSeconds % 60
+		let minutes: Int = (totalSeconds / 60) % 60
+		//     let hours: Int = totalSeconds / 3600
+		return String(format: "%02d:%02d", minutes, seconds)
+	}
+
 	// MARK: - Actions
 	
-	func startOrStopTapped(_ sender: UIButton) {
+	@objc func startOrStopTapped(_ sender: UIButton) {
 		print("ANIMATE BUTTON TAPPED, CUMULATED ANGLE: \(Double(rotationGestureRecognizer.cumulatedAngle))")
 		self.circularProgress.set(colors: UIColor.white, UIColor.orange)
 		currentCycle = 0
@@ -136,7 +166,9 @@ class HomeViewController: UIViewController, AudioPlayer {
 		if sender.titleLabel?.text == "START" {
 			startButton.setTitle("STOP", for: .normal)
 			registerBackgroundTask()
-			animate()
+			
+			
+			startTimer()
 		} else {
 			circularProgress.stopAnimation()
 			startButton.setTitle("START", for: .normal)

@@ -28,6 +28,7 @@
 		CC1ACD491F6C5472009F145A /* KontrastNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1ACD481F6C5472009F145A /* KontrastNavigationController.swift */; };
 		CC1BE6D11F5D34D200CADE6D /* OneFingerGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */; };
 		CC33394E1F6BB78D00BA9A9C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */; };
+		CC5A0D2620F6AD6100D467ED /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A0D2520F6AD6100D467ED /* CountdownTimer.swift */; };
 		CC6C23C21F6A17B600079133 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6C23C11F6A17B600079133 /* SettingsViewController.swift */; };
 		DB5731CA07EB36A72B9EDF25 /* Pods_Kontrast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C4240B8D96F08C16417DFB /* Pods_Kontrast.framework */; };
 		E13D3E08BA9434A750466DF5 /* Pods_KontrastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50257CB964149DACBB68B6 /* Pods_KontrastUITests.framework */; };
@@ -84,6 +85,7 @@
 		CC1ACD481F6C5472009F145A /* KontrastNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KontrastNavigationController.swift; sourceTree = "<group>"; };
 		CC1BE6D01F5D34D200CADE6D /* OneFingerGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneFingerGestureRecognizer.swift; sourceTree = "<group>"; };
 		CC33394D1F6BB78D00BA9A9C /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CC5A0D2520F6AD6100D467ED /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		CC6C23C11F6A17B600079133 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SettingsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CCF586B5202E43E600B844DC /* Kontrast.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Kontrast.entitlements; sourceTree = "<group>"; };
 		D7094E44EA270DEC7B549959 /* Pods-KontrastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KontrastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KontrastUITests/Pods-KontrastUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				CC066C261F4E0BF4005E0D2A /* LaunchScreen.storyboard */,
 				CC066C291F4E0BF4005E0D2A /* Info.plist */,
 				CC066C4B1F4E0C2B005E0D2A /* Constants.swift */,
+				CC5A0D2520F6AD6100D467ED /* CountdownTimer.swift */,
 				CC066C4D1F4E0C30005E0D2A /* Extensions.swift */,
 				CC08F25C1F6B9A8B00C8A306 /* SwiftyDefaults.swift */,
 				CC0643981F8EC609002749B2 /* JSON */,
@@ -581,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC066C201F4E0BF4005E0D2A /* HomeViewController.swift in Sources */,
+				CC5A0D2620F6AD6100D467ED /* CountdownTimer.swift in Sources */,
 				CC066C1E1F4E0BF4005E0D2A /* AppDelegate.swift in Sources */,
 				CC1ACD491F6C5472009F145A /* KontrastNavigationController.swift in Sources */,
 				CC0D9F9B1F6680E100858DDF /* RadialGradient.swift in Sources */,
