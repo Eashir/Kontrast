@@ -31,7 +31,7 @@ class SettingsViewController: UIViewController {
   // MARK: - Methods
   
   func doesInputStartWithZero(str: String) -> Bool {
-    let characters = Array(str.characters)
+    let characters = [Character](str)
     guard String(characters[0]) != "0" else {
       return false
     }
