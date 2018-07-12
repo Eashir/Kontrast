@@ -22,6 +22,7 @@ class SettingsViewController: UIViewController {
     cycleTextField.delegate = self
     hotDurationTextField.delegate = self
     coldDurationTextField.delegate = self
+		countdownTimerTextField.delegate = self
     
     setupViewHierarchy()
     configureConstraints()
@@ -38,7 +39,7 @@ class SettingsViewController: UIViewController {
     return true
   }
 	
-	func isCycleLessThanTwenty(activeTextField: Double) {
+	func isLessThanTwenty(activeTextField: Double) {
 		guard activeTextField < 20 else {
 			return
 		}
@@ -80,9 +81,11 @@ class SettingsViewController: UIViewController {
     view.addSubview(settingsLabel)
     view.addSubview(cycleSettingsView)
     view.addSubview(durationSettingsView)
+		view.addSubview(countdownTimerSettingsView)
     view.addSubview(cycleTextField)
     view.addSubview(hotDurationTextField)
     view.addSubview(coldDurationTextField)
+		view.addSubview(countdownTimerTextField)
     view.addSubview(hotLabel)
     view.addSubview(coldLabel)
 		view.addSubview(replayWalkthroughButton)
@@ -109,11 +112,23 @@ class SettingsViewController: UIViewController {
       make.width.equalTo(40)
     }
     
-    durationSettingsView.snp.makeConstraints { (make) in
-      make.leading.trailing.equalTo(cycleSettingsView)
-      make.top.equalTo(cycleSettingsView.infoLabel.snp.bottom).offset(Layout.mediumOffset)
-    }
-    
+		durationSettingsView.snp.makeConstraints { (make) in
+			make.leading.trailing.equalTo(cycleSettingsView)
+			make.top.equalTo(cycleSettingsView.infoLabel.snp.bottom).offset(Layout.mediumOffset)
+		}
+		
+		countdownTimerSettingsView.snp.makeConstraints { (make) in
+			make.leading.trailing.equalTo(durationSettingsView)
+			make.top.equalTo(durationSettingsView.infoLabel.snp.bottom).offset(Layout.mediumOffset)
+		}
+		
+		countdownTimerTextField.snp.makeConstraints { (make) in
+			make.trailing.equalTo(countdownTimerSettingsView)
+			make.centerY.equalTo(countdownTimerSettingsView.mainLabel.snp.centerY)
+			make.height.equalTo(30)
+			make.width.equalTo(40)
+		}
+		
     coldDurationTextField.snp.makeConstraints { (make) in
       make.trailing.equalTo(durationSettingsView)
       make.centerY.equalTo(durationSettingsView.mainLabel.snp.centerY)
@@ -184,10 +199,18 @@ class SettingsViewController: UIViewController {
   lazy var durationSettingsView: SettingsView = {
     let settingsView = SettingsView()
     settingsView.mainLabel.text = "Duration"
-    settingsView.infoLabel.text = "The time, in seconds, of the initial hot timer and succeeding cold timer. Recommended Hot:Cold ratio is 3:1"
+		settingsView.infoLabel.text = "The time, in seconds, of the contrast shower's timers: the initial hot timer and succeeding cold timer. Recommended Hot:Cold ratio is 3:1"
     settingsView.translatesAutoresizingMaskIntoConstraints = false
     return settingsView
   }()
+	
+	lazy var countdownTimerSettingsView: SettingsView = {
+		let settingsView = SettingsView()
+		settingsView.mainLabel.text = "Countdown"
+		settingsView.infoLabel.text = "The time, in seconds, of the countdown before your contrast shower timer starts. Default is 4 seconds."
+		settingsView.translatesAutoresizingMaskIntoConstraints = false
+		return settingsView
+	}()
   
   lazy var backLabel: UILabel = {
     let label = UILabel()
@@ -278,6 +301,22 @@ class SettingsViewController: UIViewController {
     return field
   }()
 	
+	lazy var countdownTimerTextField: UITextField = {
+		let field = UITextField(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+		field.autocorrectionType = .yes
+		field.backgroundColor = ColorPalette.secondary
+		field.borderStyle = UITextBorderStyle.none
+		field.font = UIFont(name: Font.standardWeight, size: Font.mediumSize)
+		field.keyboardType = .numberPad
+		field.layer.cornerRadius = 13
+		field.returnKeyType = .done
+		field.textColor = ColorPalette.primaryLight
+		field.textAlignment = .center
+		field.tag = 4
+		field.text = "\(Int(Defaults[.timerDuration]))"
+		return field
+	}()
+	
 	lazy var replayWalkthroughButton: UIButton = {
 		let button = UIButton(type: .roundedRect)
 		button.addTarget(self, action: #selector(replayWalkthroughTapped), for: .touchUpInside)
@@ -317,7 +356,7 @@ extension SettingsViewController: UITextFieldDelegate {
         switch validTag {
           
         case 1:
-					isCycleLessThanTwenty(activeTextField: activeTextFieldInput)
+					isLessThanTwenty(activeTextField: activeTextFieldInput)
           Defaults[.numberOfCycles] = activeTextFieldInput
           
         case 2:
@@ -327,11 +366,14 @@ extension SettingsViewController: UITextFieldDelegate {
           Defaults[.hotDuration] = Int((activeTextField?.text)!)!
           Defaults[.hotToColdRatio] = (CGFloat(Double((activeTextField?.text)!)! / Double(Defaults[.coldDuration])))
           //Fix cold duration bug
-        case 3:
-          guard activeTextFieldInput <= (Double(Defaults[.hotDuration])) && activeTextFieldInput < 1200.0 else {
-            return
-          }
-          Defaults[.hotToColdRatio] = (CGFloat(Double(Defaults[.hotDuration]) / activeTextFieldInput))
+				case 3:
+					guard activeTextFieldInput <= (Double(Defaults[.hotDuration])) && activeTextFieldInput < 1200.0 else {
+						return
+					}
+					Defaults[.hotToColdRatio] = (CGFloat(Double(Defaults[.hotDuration]) / activeTextFieldInput))
+				case 4:
+					isLessThanTwenty(activeTextField: activeTextFieldInput)
+					Defaults[.timerDuration] = activeTextFieldInput
         default:
           break
         }
