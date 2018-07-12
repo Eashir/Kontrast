@@ -133,9 +133,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 	}
 	
 	@objc func updateTime() {
-		
-//		print(timerDuration)
-		print(currentTimerCount)
+		countdownTimerLabel.text = String(currentTimerCount)
 		if currentTimerCount != 0 {
 			currentTimerCount -= 1
 		} else {
@@ -167,11 +165,13 @@ class HomeViewController: UIViewController, AudioPlayer {
 			startButton.setTitle("STOP", for: .normal)
 			registerBackgroundTask()
 			
-			
 			startTimer()
 		} else {
+			endTimer()
+			currentTimerCount = Int(Defaults[.timerDuration])
 			circularProgress.stopAnimation()
 			startButton.setTitle("START", for: .normal)
+			countdownTimerLabel.text = ""
 		}
 		
 	}
@@ -190,6 +190,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 	
 	func setupViewHierarchy() {
 		view.addSubview(radialBackgroundView)
+		view.addSubview(countdownTimerLabel)
 		view.addSubview(circularProgress)
 		view.addSubview(linesImageView)
 		view.addSubview(dialImageView)
@@ -200,6 +201,11 @@ class HomeViewController: UIViewController, AudioPlayer {
 	}
 	
 	func configureConstraints() {
+		
+		countdownTimerLabel.snp.makeConstraints { (make) in
+			make.centerX.equalToSuperview()
+			make.top.equalToSuperview().offset(Layout.screenHeight * 0.09)
+		}
 		
 		circularProgress.snp.makeConstraints { (make) in
 			make.centerX.equalToSuperview()
@@ -263,6 +269,15 @@ class HomeViewController: UIViewController, AudioPlayer {
 	}
 	
 	// MARK: - Lazy Vars
+	
+	lazy var countdownTimerLabel: UILabel = {
+		let label = UILabel()
+		label.font = UIFont(name: Font.standardWeight, size: Font.largeSize)
+		label.textColor = ColorPalette.secondary
+		label.text = ""
+		label.translatesAutoresizingMaskIntoConstraints = false
+		return label
+	}()
 	
 	lazy var circularProgress: KDCircularProgress = {
 		let progress = KDCircularProgress()
