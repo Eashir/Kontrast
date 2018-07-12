@@ -128,7 +128,7 @@ class HomeViewController: UIViewController, AudioPlayer {
 	
 	//Timer methods
 	
-	func startTimer() { //completion: ((Bool) -> Void)?
+	func startTimer() {
 		countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 	}
 	

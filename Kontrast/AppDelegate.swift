@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window?.rootViewController = navigationController
       self.window?.makeKeyAndVisible()
     }
-//		registerForPushNotifications()
+		registerForPushNotifications()
     return true
   }
   
@@ -66,24 +66,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 	
-//	func getNotificationSettings() {
-//		UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-//			print("Notification settings: \(settings)")
-//			guard settings.authorizationStatus == .authorized else { return }
-//			UIApplication.shared.registerForRemoteNotifications()
-//		}
-//	}
-//	
-//	func registerForPushNotifications() {
-//		UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-//			(granted, error) in
-//			print("Permission granted: \(granted)")
-//			
-//			guard granted else { return }
-//			self.getNotificationSettings()
-//		}
-//	}
-//	
+	func getNotificationSettings() {
+		UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+			print("Notification settings: \(settings)")
+			guard settings.authorizationStatus == .authorized else { return }
+			UIApplication.shared.registerForRemoteNotifications()
+		}
+	}
+	
+	func registerForPushNotifications() {
+		UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+			(granted, error) in
+			print("Permission granted: \(granted)")
+			
+			guard granted else { return }
+			self.getNotificationSettings()
+		}
+	}
+
 	func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 		let tokenParts = deviceToken.map { data -> String in
 			return String(format: "%02.2hhx", data)
