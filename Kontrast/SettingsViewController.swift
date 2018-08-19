@@ -39,12 +39,6 @@ class SettingsViewController: UIViewController {
     return true
   }
 	
-	func isLessThanTwenty(activeTextField: Double) {
-		guard activeTextField < 20 else {
-			return
-		}
-	}
-	
 	func roundOutViews() {
 		replayWalkthroughButton.layoutIfNeeded()
 		replayWalkthroughButton.roundButton()
@@ -354,9 +348,10 @@ extension SettingsViewController: UITextFieldDelegate {
     if doesInputStartWithZero(str: (activeTextField?.text!)!) {
       if let validTag = activeTextField?.tag {
         switch validTag {
-          
         case 1:
-					isLessThanTwenty(activeTextField: activeTextFieldInput)
+					guard activeTextFieldInput < 20 else {
+						return
+					}
           Defaults[.numberOfCycles] = activeTextFieldInput
           
         case 2:
@@ -372,7 +367,9 @@ extension SettingsViewController: UITextFieldDelegate {
 					}
 					Defaults[.hotToColdRatio] = (CGFloat(Double(Defaults[.hotDuration]) / activeTextFieldInput))
 				case 4:
-					isLessThanTwenty(activeTextField: activeTextFieldInput)
+					guard activeTextFieldInput < 200 else {
+						return
+					}
 					Defaults[.timerDuration] = activeTextFieldInput
         default:
           break
