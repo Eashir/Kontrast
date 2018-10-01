@@ -414,7 +414,16 @@ extension HomeViewController: UIGestureRecognizerDelegate {
 		let totalDuration = Double((rotationGestureRecognizer.cumulatedAngle)/6)
 		
 		Defaults[.hotDuration] = Int(totalDuration)
+		
+		guard Int(totalDuration) / Int(Defaults[.hotToColdRatio]) > 0 else {
+			Defaults[.coldDuration] = 0
+			timeLabel.text = "\(Defaults[.hotDuration])"
+			return
+		}
+		
+		
 		Defaults[.coldDuration] = Int(totalDuration) / Int(Defaults[.hotToColdRatio])
+		
 		
 		timeLabel.text = "\(Defaults[.hotDuration])"
 		print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
