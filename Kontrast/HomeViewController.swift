@@ -12,6 +12,7 @@ import SwiftyUserDefaults
 import KDCircularProgress
 import Lottie
 import QuartzCore
+import UserNotifications
 
 protocol AudioPlayer {
 	func playSound()
@@ -26,6 +27,8 @@ class HomeViewController: UIViewController, AudioPlayer {
 	
 	var currentCycle = 0
 	var currentTimerCount = Int(Defaults[.timerDuration])
+	
+	private let center = UNUserNotificationCenter.current()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,6 +48,17 @@ class HomeViewController: UIViewController, AudioPlayer {
 	
 	deinit {
 		NotificationCenter.default.removeObserver(self)
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		center.requestAuthorization(
+			options: [.alert,.sound,.badge],
+			completionHandler: { [weak self] (granted, error) in
+				guard let `self` = self else { return }
+				if granted {
+					self.center.delegate = self
+				}
+		})
 	}
 	
 	// MARK: - Background Task Management
@@ -429,4 +443,12 @@ extension HomeViewController: UIGestureRecognizerDelegate {
 		print("CUMULATED ANGLE \(rotationGestureRecognizer.cumulatedAngle)")
 	}
 	
+}
+
+// MARK: - UNNotificationCenterDelegate
+
+extension HomeViewController: UNUserNotificationCenterDelegate {
+	func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+		completionHandler([.alert, .sound, .badge])
+	}
 }

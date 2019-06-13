@@ -12,7 +12,7 @@ target 'Kontrast' do
   pod "lottie-ios"
   pod 'KDCircularProgress'
   pod 'SwiftyUserDefaults'
-  pod 'SnapKit'
+  pod 'SnapKit', '~> 4.0.0'
 
   target 'KontrastTests' do
     inherit! :search_paths
